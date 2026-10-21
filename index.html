@@ -1,1 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EthioHub</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101010;color:white;font-family:Arial,sans-serif}
+header{background:#181818;padding:18px;text-align:center;border-bottom:1px solid #333}
+header h1{margin:0;color:#ff3155;font-size:30px}
+header p{margin:6px 0 0;color:#ccc}
+nav{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:14px}
+nav button{background:#292929;color:white;border:0;border-radius:20px;padding:10px 15px}
+main{max-width:650px;margin:auto;padding:12px}
+h2{font-size:21px}
+.card{background:#1b1b1b;border-radius:12px;margin:16px 0;padding:14px;overflow:hidden}
+.card img{display:block;width:100%;height:auto;border-radius:8px}
+video{display:block;width:100%;max-height:600px;background:#000;border-radius:8px}
+.actions{display:flex;gap:12px;margin-top:12px}
+.actions button{background:#303030;color:white;border:0;border-radius:8px;padding:10px 14px}
+footer{text-align:center;padding:25px;color:#aaa}
+</style>
+</head>
+<body>
+<header>
+<h1>EthioHub</h1>
+<p>Discover • Learn • Share</p>
+</header>
+
+<nav>
+<button onclick="showAll()">🏠 Home</button>
+<button onclick="showCategory('Technology')">💻 Technology</button>
+<button onclick="showCategory('Business')">💼 Business</button>
+<button onclick="showCategory('Digital Skills')">📚 Digital Skills</button>
+</nav>
+
+<main>
+<section id="videos">
+<div class="card" data-category="Technology">
+<h2>👟 Jordan 12 Video</h2>
+<video controls playsinline preload="metadata">
 <source src="jordan12.mp4" type="video/mp4">
+Your browser does not support this video.
+</video>
+<p>Watch the Jordan 12 video on EthioHub!</p>
+<div class="actions">
+<button onclick="like(this)">❤️ Like <span>0</span></button>
+<button onclick="sharePage()">↗ Share</button>
+</div>
+</div>
+
+<div class="card" data-category="Business">
+<h2>💼 EthioHub Business Card</h2>
+<img src="card.jpg" alt="EthioHub Business Card">
+<p>Business • Products • Shopping</p>
+<div class="actions">
+<button onclick="like(this)">❤️ Like <span>0</span></button>
+<button onclick="sharePage()">↗ Share</button>
+</div>
+</div>
+
+<div class="card" data-category="Digital Skills">
+<h2>📚 Learn Digital Skills</h2>
+<p>Welcome to EthioHub! Explore technology, business, online learning and digital skills.</p>
+<div class="actions">
+<button onclick="like(this)">❤️ Like <span>0</span></button>
+<button onclick="sharePage()">↗ Share</button>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<p>© 2026 EthioHub</p>
+<p>Learn • Create • Grow</p>
+</footer>
+
+<script>
+function like(button){
+const count=button.querySelector('span');
+count.textContent=Number(count.textContent)+1;
+}
+function sharePage(){
+if(navigator.share){
+navigator.share({title:'EthioHub',url:location.href}).catch(()=>{});
+}else if(navigator.clipboard){
+navigator.clipboard.writeText(location.href)
+.then(()=>alert('Website link copied!'))
+.catch(()=>alert(location.href));
+}else{
+alert(location.href);
+}
+}
+function showAll(){
+document.querySelectorAll('.card').forEach(card=>card.style.display='block');
+}
+function showCategory(category){
+document.querySelectorAll('.card').forEach(card=>{
+card.style.display=card.dataset.category===category?'block':'none';
+});
+}
+</script>
+</body>
+</html>
