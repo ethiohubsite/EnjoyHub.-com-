@@ -2,28 +2,27 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EthioHub</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#080808;color:white;font-family:Arial,sans-serif}
-header{position:sticky;top:0;background:#111;padding:16px;display:flex;justify-content:space-between;align-items:center;z-index:5}
-.logo{font-size:25px;font-weight:bold;color:#ff2d75}
-header span{font-size:13px;color:#bbb}
-nav{display:flex;justify-content:space-around;padding:12px 4px;background:#181818;position:sticky;top:58px;z-index:4}
+header{background:#111;padding:16px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:26px;font-weight:bold;color:#ff2d75}
+nav{display:flex;justify-content:space-around;padding:14px 4px;background:#191919;position:sticky;top:0}
 nav a{color:white;text-decoration:none;font-size:13px}
-main{max-width:600px;margin:auto;padding:12px}
-h2{font-size:20px}
-.categories{display:flex;gap:8px;overflow:auto;padding:8px 0}
-.categories button{background:#242424;color:white;border:0;border-radius:20px;padding:10px 14px;white-space:nowrap}
-.video{background:#171717;border-radius:14px;overflow:hidden;margin:16px 0 24px}
-.video video{display:block;width:100%;max-height:65vh;min-height:220px;object-fit:contain;background:#000}
-.info{padding:12px}
-.info h3{margin:0 0 8px}
-.info p{color:#bbb;font-size:14px}
-.actions{display:flex;gap:20px;padding:10px 0}
-.actions button{background:none;border:0;color:white;font-size:15px;padding:8px 0}
-footer{text-align:center;color:#888;padding:25px;font-size:12px}
+main{max-width:600px;margin:auto;padding:14px}
+h2{font-size:22px}
+p{color:#bbb}
+.categories{display:flex;gap:8px;overflow-x:auto;padding:8px 0}
+.categories button{background:#252525;color:white;border:0;border-radius:22px;padding:12px;white-space:nowrap}
+.card{background:#181818;border-radius:16px;overflow:hidden;margin:20px 0}
+.card img{width:100%;height:auto;display:block}
+video{width:100%;max-height:70vh;background:#000;display:block}
+.info{padding:14px}
+.actions{display:flex;gap:20px}
+.actions button{background:none;color:white;border:0;font-size:16px;padding:10px 0}
+footer{text-align:center;color:#888;padding:25px}
 </style>
 </head>
 <body>
@@ -34,86 +33,88 @@ footer{text-align:center;color:#888;padding:25px;font-size:12px}
 <nav>
 <a href="#home">🏠 Home</a>
 <a href="#videos">🎬 Videos</a>
-<a href="#categories">📚 Skills</a>
+<a href="#skills">📚 Skills</a>
 <a href="#about">ℹ️ About</a>
 </nav>
 <main id="home">
 <h2>Discover & Learn ✨</h2>
-<p style="color:#aaa">Build your digital future with EthioHub.</p>
-<div class="categories" id="categories">
-<button onclick="filterVideos('All')">All</button>
-<button onclick="filterVideos('Technology')">Technology</button>
-<button onclick="filterVideos('Business')">Business</button>
-<button onclick="filterVideos('Digital Skills')">Digital Skills</button>
+<p>Build your digital future with EthioHub.</p>
+
+<div class="categories" id="skills">
+<button onclick="filter('All')">All</button>
+<button onclick="filter('Technology')">Technology</button>
+<button onclick="filter('Business')">Business</button>
+<button onclick="filter('Digital Skills')">Digital Skills</button>
 </div>
+
 <h2 id="videos">Trending Videos 🎬</h2>
-<div class="video" data-category="Digital Skills">
-<video controls playsinline preload="metadata" poster="card.jpg">
+
+<div class="card">
+<img src="card.jpg" alt="EthioHub Business Card">
+<div class="info">
+<h3>Adonay — Dubai to Ethiopia</h3>
+<p>Small-Shop Product Sourcing & Import</p>
+<div class="actions">
+<button onclick="like(this)">❤️ Like <span>0</span></button>
+<button onclick="share()">↗️ Share</button>
+</div>
+</div>
+</div>
+
+<div class="card" data-category="Digital Skills">
+<video controls playsinline preload="metadata">
 <source src="video1.mp4" type="video/mp4">
-Your browser does not support video playback.
+Your browser cannot play this video.
 </video>
 <div class="info">
 <h3>Welcome to EthioHub</h3>
 <p>Learn new digital skills and grow your future.</p>
 <div class="actions">
-<button onclick="likeVideo(this)">❤️ Like <span>0</span></button>
-<button onclick="shareVideo()">↗️ Share</button>
+<button onclick="like(this)">❤️ Like <span>0</span></button>
+<button onclick="share()">↗️ Share</button>
 </div>
 </div>
 </div>
-<div class="video" data-category="Technology">
-<video controls playsinline preload="metadata">
-<source src="video2.mp4" type="video/mp4">
-</video>
+
+<div class="card" data-category="Technology">
 <div class="info">
 <h3>Technology & Innovation</h3>
-<p>Discover technology and useful digital tools.</p>
-<div class="actions">
-<button onclick="likeVideo(this)">❤️ Like <span>0</span></button>
-<button onclick="shareVideo()">↗️ Share</button>
+<p>More videos coming soon.</p>
 </div>
 </div>
-</div>
-<div class="video" data-category="Business">
-<video controls playsinline preload="metadata">
-<source src="video3.mp4" type="video/mp4">
-</video>
+
+<div class="card" data-category="Business">
 <div class="info">
 <h3>Business & Entrepreneurship</h3>
 <p>Learn ideas to help you build your own business.</p>
-<div class="actions">
-<button onclick="likeVideo(this)">❤️ Like <span>0</span></button>
-<button onclick="shareVideo()">↗️ Share</button>
 </div>
 </div>
-</div>
+
 <section id="about">
 <h2>About EthioHub</h2>
-<p>EthioHub helps people learn digital skills, technology and business.</p>
+<p>Learn digital skills, technology and business with EthioHub.</p>
 </section>
 </main>
 <footer>© 2026 EthioHub • Learn • Create • Grow</footer>
+
 <script>
-function likeVideo(button){
-const count=button.querySelector('span');
-const liked=button.dataset.liked==='true';
-button.dataset.liked=liked?'false':'true';
-count.textContent=Number(count.textContent)+(liked?-1:1);
+function like(button){
+const s=button.querySelector('span');
+const liked=button.dataset.liked==='yes';
+button.dataset.liked=liked?'no':'yes';
+s.textContent=Number(s.textContent)+(liked?-1:1);
 button.style.color=liked?'white':'#ff2d75';
 }
-function shareVideo(){
+function share(){
 if(navigator.share){
-navigator.share({title:'EthioHub',text:'Explore digital skills on EthioHub',url:location.href});
-}else if(navigator.clipboard){
-navigator.clipboard.writeText(location.href);
-alert('Website link copied!');
+navigator.share({title:'EthioHub',url:location.href});
 }else{
 prompt('Copy this website link:',location.href);
 }
 }
-function filterVideos(category){
-document.querySelectorAll('.video').forEach(video=>{
-video.style.display=category==='All'||video.dataset.category===category?'block':'none';
+function filter(category){
+document.querySelectorAll('[data-category]').forEach(el=>{
+el.style.display=category==='All'||el.dataset.category===category?'block':'none';
 });
 }
 </script>
