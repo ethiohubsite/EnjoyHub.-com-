@@ -1,3 +1,100 @@
-<video controls playsinline>
-  <source src="jordan12.mp4" type="video/mp4">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EthioHub | Entertainment</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#090909;color:#fff;font-family:Arial,sans-serif}
+header{background:#181818;padding:20px 12px;text-align:center;border-bottom:1px solid #333}
+header h1{margin:0;color:#ff3155;font-size:32px}
+header p{color:#ccc;margin:7px 0 0}
+nav{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:14px}
+nav button{background:#292929;color:white;border:0;border-radius:20px;padding:11px 16px}
+nav button.active{background:#ff3155}
+main{max-width:650px;margin:auto;padding:12px}
+.post{background:#191919;border-radius:13px;padding:14px;margin-bottom:22px}
+.post h2{font-size:20px;margin:4px 0 12px}
+video{display:block;width:100%;max-height:600px;background:#000;border-radius:10px}
+.post img{display:block;width:100%;height:auto;border-radius:10px}
+.caption{color:#ddd;line-height:1.5}
+.actions{display:flex;gap:10px;margin-top:12px}
+.actions button{background:#303030;color:white;border:0;border-radius:8px;padding:10px 14px}
+footer{text-align:center;color:#aaa;padding:25px}
+</style>
+</head>
+<body>
+<header>
+<h1>EthioHub 🎬</h1>
+<p>Entertainment • Videos • Photos</p>
+</header>
+
+<nav>
+<button class="active" onclick="filterPosts('all',this)">🏠 For You</button>
+<button onclick="filterPosts('video',this)">🎬 Videos</button>
+<button onclick="filterPosts('photo',this)">📸 Photos</button>
+</nav>
+
+<main>
+<div class="post" data-type="video">
+<h2>🔥 Jordan 12</h2>
+<video controls playsinline preload="metadata">
+<source src="./jordan12.mp4" type="video/mp4">
+Your browser cannot play this video.
 </video>
+<p class="caption">Jordan 12 👟🔥 Watch and enjoy on EthioHub!</p>
+<div class="actions">
+<button onclick="likePost(this)">❤️ Like <span>0</span></button>
+<button onclick="sharePage()">↗ Share</button>
+</div>
+</div>
+
+<div class="post" data-type="photo">
+<h2>💼 EthioHub Business Card</h2>
+<img src="./card.jpg" alt="EthioHub Business Card">
+<p class="caption">Welcome to EthioHub! Enjoy videos and photos.</p>
+<div class="actions">
+<button onclick="likePost(this)">❤️ Like <span>0</span></button>
+<button onclick="sharePage()">↗ Share</button>
+</div>
+</div>
+
+<div class="post" data-type="photo">
+<h2>✨ Welcome to EthioHub</h2>
+<p class="caption">Your entertainment space. More fun videos and photos coming soon!</p>
+<div class="actions">
+<button onclick="likePost(this)">❤️ Like <span>0</span></button>
+<button onclick="sharePage()">↗ Share</button>
+</div>
+</div>
+</main>
+
+<footer>
+<p>© 2026 EthioHub</p>
+<p>Enjoy • Share • Discover</p>
+</footer>
+
+<script>
+function likePost(button){
+const count=button.querySelector('span');
+count.textContent=Number(count.textContent)+1;
+}
+function filterPosts(type,button){
+document.querySelectorAll('.post').forEach(post=>{
+post.style.display=(type==='all'||post.dataset.type===type)?'block':'none';
+});
+document.querySelectorAll('nav button').forEach(item=>item.classList.remove('active'));
+button.classList.add('active');
+}
+function sharePage(){
+const url=window.location.href;
+if(navigator.share){
+navigator.share({title:'EthioHub Entertainment',url:url}).catch(()=>{});
+}else{
+window.prompt('Copy your EthioHub website link:',url);
+}
+}
+</script>
+</body>
+</html>
