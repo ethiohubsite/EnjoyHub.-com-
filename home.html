@@ -268,7 +268,77 @@ function toggleEthioLike() {
 <!-- End EthioHub Video Player -->
 
 </section>
-<!-- End EthioHub Real Video Player -->
+<!-- End EthioHub 
+<!-- EthioHub Video Actions -->
+<section id="video-actions" style="margin:16px 12px;padding:18px;background:#191927;border:1px solid #373052;border-radius:16px;color:white;">
+  <h2 style="margin-top:0;">❤️ Your Reaction</h2>
+  <p style="color:#c7c7d4;">Enjoy the video? Show your support!</p>
+
+  <div style="display:flex;gap:10px;flex-wrap:wrap;">
+    <button id="likeBtn" onclick="ethioLike()" style="flex:1;min-width:90px;padding:13px 8px;background:#3a2039;color:white;border:1px solid #70406b;border-radius:10px;font-weight:bold;">
+      🤍 Like <span id="likeCount">0</span>
+    </button>
+
+    <button id="favBtn" onclick="ethioFavorite()" style="flex:1;min-width:90px;padding:13px 8px;background:#352c18;color:white;border:1px solid #78602b;border-radius:10px;font-weight:bold;">
+      ☆ Favorite
+    </button>
+
+    <button onclick="document.getElementById('ethioComment').focus()" style="flex:1;min-width:90px;padding:13px 8px;background:#202f48;color:white;border:1px solid #355b83;border-radius:10px;font-weight:bold;">
+      💬 Comment
+    </button>
+  </div>
+
+  <p id="actionMessage" style="color:#c4b5fd;font-size:13px;">Tap a button to interact!</p>
+
+  <div style="margin-top:18px;padding-top:15px;border-top:1px solid #373052;">
+    <label for="ethioComment" style="display:block;margin-bottom:8px;font-weight:bold;">💬 Write a comment</label>
+    <textarea id="ethioComment" placeholder="What do you think about this video?" style="width:100%;min-height:85px;box-sizing:border-box;padding:12px;background:#242438;color:white;border:1px solid #45455d;border-radius:10px;font:inherit;"></textarea>
+    <button onclick="ethioSendComment()" style="padding:11px 17px;background:#7c3aed;color:white;border:0;border-radius:9px;font-weight:bold;">Post Comment</button>
+    <div id="ethioCommentResult" style="margin-top:12px;"></div>
+  </div>
+</section>
+
+<script>
+let ethioIsLiked = false;
+let ethioIsFavorite = false;
+let ethioLikeTotal = 0;
+
+function ethioLike() {
+  ethioIsLiked = !ethioIsLiked;
+  ethioLikeTotal = ethioIsLiked ? 1 : 0;
+  document.getElementById('likeBtn').innerHTML =
+    (ethioIsLiked ? '❤️ Liked ' : '🤍 Like ') +
+    '<span id="likeCount">' + ethioLikeTotal + '</span>';
+  document.getElementById('actionMessage').textContent =
+    ethioIsLiked ? 'Thanks for liking this video! ❤️' : 'Like removed.';
+}
+
+function ethioFavorite() {
+  ethioIsFavorite = !ethioIsFavorite;
+  document.getElementById('favBtn').textContent =
+    ethioIsFavorite ? '⭐ Favorited' : '☆ Favorite';
+  document.getElementById('actionMessage').textContent =
+    ethioIsFavorite ? 'Added to your favorites!' : 'Removed from favorites.';
+}
+
+function ethioSendComment() {
+  const field = document.getElementById('ethioComment');
+  const comment = field.value.trim();
+  if (!comment) {
+    document.getElementById('ethioCommentResult').textContent =
+      'Please write a comment first.';
+    return;
+  }
+  const item = document.createElement('p');
+  item.textContent = '💬 ' + comment;
+  item.style.cssText =
+    'padding:10px;background:#242438;border-radius:9px;overflow-wrap:anywhere;';
+  document.getElementById('ethioCommentResult').appendChild(item);
+  field.value = '';
+}
+</script>
+<!-- End EthioHub Video Actions -->
+ Video Player -->
 
 </body>
 </html>
