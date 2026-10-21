@@ -492,6 +492,67 @@ function ehPaymentHelp() {
   });
 })();
 </script>
+<!-- EthioHub Video Categories -->
+<section id="eh-categories" style="max-width:700px;margin:20px auto;padding:12px;font-family:Arial,sans-serif;">
+  <h2 style="margin-bottom:12px;">Explore EthioHub</h2>
+
+  <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:12px;">
+    <button class="eh-cat-btn" data-cat="all">For You</button>
+    <button class="eh-cat-btn" data-cat="trending">🔥 Trending</button>
+    <button class="eh-cat-btn" data-cat="comedy">😂 Comedy</button>
+    <button class="eh-cat-btn" data-cat="technology">💻 Technology</button>
+  </div>
+
+  <p id="eh-category-message" aria-live="polite">
+    Welcome to EthioHub! Choose a category.
+  </p>
+</section>
+
+<style>
+#eh-categories .eh-cat-btn {
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 22px;
+  padding: 11px 16px;
+  background: #292929;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+#eh-categories .eh-cat-btn.active {
+  background: #ff3155;
+}
+</style>
+
+<script>
+(function () {
+  const section = document.getElementById('eh-categories');
+  if (!section || section.dataset.ready) return;
+  section.dataset.ready = '1';
+
+  const buttons = section.querySelectorAll('.eh-cat-btn');
+  const message = document.getElementById('eh-category-message');
+
+  const descriptions = {
+    all: 'Showing your For You feed.',
+    trending: '🔥 Trending videos will appear here.',
+    comedy: '😂 Comedy videos will appear here.',
+    technology: '💻 Technology videos will appear here.'
+  };
+
+  buttons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      buttons.forEach(function (item) {
+        item.classList.toggle('active', item === button);
+      });
+      message.textContent = descriptions[button.dataset.cat];
+    });
+  });
+
+  buttons[0].classList.add('active');
+})();
+</script>
+
 </body>
 
 
