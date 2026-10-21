@@ -280,6 +280,27 @@ window.prompt('Copy your EthioHub website link:',url);
 
 </nav>
 
+<!-- EthioHub Search -->
+<section style="margin:16px 12px;padding:18px;background:#171725;border:1px solid #343449;border-radius:14px;color:white;">
+  <h2 style="margin:0 0 12px;">🔍 Find Something Fun</h2>
+
+  <form onsubmit="event.preventDefault(); const q=this.querySelector('input').value.toLowerCase().trim(); const target=q.includes('comedy')?'#comedy':q.includes('entertainment')?'#entertainment':q.includes('technology')?'#technology':q.includes('business')?'#business':q.includes('education')?'#education':q.includes('video')?'https://t.me/+_Sp66kHYjgliZjk8':'https://t.me/+_Sp66kHYjgliZjk8'; if(target.startsWith('#') && document.querySelector(target)){document.querySelector(target).scrollIntoView({behavior:'smooth'});}else{window.open(target,'_blank');}"
+        style="display:flex;gap:8px;">
+
+    <input type="search" placeholder="Search comedy, videos..."
+      style="flex:1;min-width:0;padding:13px;border:1px solid #45455d;border-radius:9px;background:#242438;color:white;font-size:14px;">
+
+    <button type="submit"
+      style="padding:12px 16px;border:0;border-radius:9px;background:#7c3aed;color:white;font-weight:bold;">
+      Search
+    </button>
+  </form>
+
+  <p style="font-size:12px;color:#b8b8c8;margin-bottom:0;">
+    Try: Comedy, Entertainment or Videos
+  </p>
+</section>
+
 
 </body>
 </html>
