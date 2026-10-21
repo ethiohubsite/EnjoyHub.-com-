@@ -223,3 +223,72 @@ function toggleEthioLike() {
   <p style="font-size:12px;color:#a5a5bd;">More photos coming soon 🚀</p>
 </section>
 
+
+<!-- EthioHub Video + Like + Comment + Favorite + Share -->
+<section id="ethiohub-yb-video" style="margin:20px 12px;padding:16px;background:#10101c;border:1px solid #373052;border-radius:18px;color:white;">
+  <h2 style="margin:0 0 12px;">🎬 EthioHub Video</h2>
+
+  <video controls playsinline preload="metadata"
+    style="display:block;width:100%;border-radius:12px;background:#000;">
+    <source src="ybnew.mp4" type="video/mp4">
+    Your browser does not support this video.
+  </video>
+
+  <!-- These buttons stay directly under the video -->
+  <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:12px;">
+    <button id="ybLike" onclick="ybToggleLike()" style="flex:1;padding:11px 5px;border:0;border-radius:9px;background:#39213c;color:white;font-weight:bold;">🤍 Like 0</button>
+    <button id="ybFavorite" onclick="ybToggleFavorite()" style="flex:1;padding:11px 5px;border:0;border-radius:9px;background:#3b321d;color:white;font-weight:bold;">☆ Favorite</button>
+    <button onclick="document.getElementById('ybComment').focus()" style="flex:1;padding:11px 5px;border:0;border-radius:9px;background:#20334b;color:white;font-weight:bold;">💬 Comment</button>
+    <button onclick="if(navigator.share){navigator.share({title:'EthioHub Video',url:location.href})}else{prompt('Copy website link:',location.href)}" style="flex:1;padding:11px 5px;border:0;border-radius:9px;background:#30254a;color:white;font-weight:bold;">↗ Share</button>
+  </div>
+
+  <p id="ybStatus" style="font-size:13px;color:#c4b5fd;">❤️ Watch and enjoy!</p>
+
+  <div style="margin-top:12px;">
+    <textarea id="ybComment" placeholder="Write a comment..." style="box-sizing:border-box;width:100%;min-height:70px;padding:12px;border-radius:9px;background:#242438;color:white;border:1px solid #45455d;font:inherit;"></textarea>
+    <button onclick="ybPostComment()" style="margin-top:8px;padding:10px 16px;background:#7c3aed;color:white;border:0;border-radius:9px;font-weight:bold;">Post Comment</button>
+    <div id="ybComments" style="margin-top:10px;"></div>
+  </div>
+</section>
+
+<script>
+let ybLiked = false;
+let ybFavorited = false;
+
+function ybToggleLike() {
+  ybLiked = !ybLiked;
+  document.getElementById('ybLike').textContent =
+    ybLiked ? '❤️ Liked 1' : '🤍 Like 0';
+  document.getElementById('ybStatus').textContent =
+    ybLiked ? 'Thanks for liking! ❤️' : 'Like removed.';
+}
+
+function ybToggleFavorite() {
+  ybFavorited = !ybFavorited;
+  document.getElementById('ybFavorite').textContent =
+    ybFavorited ? '⭐ Favorited' : '☆ Favorite';
+  document.getElementById('ybStatus').textContent =
+    ybFavorited ? 'Added to favorites! ⭐' : 'Removed from favorites.';
+}
+
+function ybPostComment() {
+  const field = document.getElementById('ybComment');
+  const value = field.value.trim();
+
+  if (!value) {
+    document.getElementById('ybStatus').textContent =
+      'Please write a comment first.';
+    return;
+  }
+
+  const comment = document.createElement('p');
+  comment.textContent = '💬 ' + value;
+  comment.style.cssText =
+    'padding:10px;background:#242438;border-radius:9px;overflow-wrap:anywhere;';
+  document.getElementById('ybComments').prepend(comment);
+
+  field.value = '';
+  document.getElementById('ybStatus').textContent = 'Comment added! ❤️';
+}
+</script>
+<!-- End EthioHub Video -->
