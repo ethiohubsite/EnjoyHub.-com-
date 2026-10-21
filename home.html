@@ -438,6 +438,62 @@ function ehPaymentHelp() {
 }
 </script>
 <!-- End EthioHub Locked Video Payment Page -->
+<!-- EthioHub Upload Video -->
+<section id="eh-upload-video" style="max-width:500px;margin:24px auto;padding:20px;background:#171717;color:white;border-radius:16px;font-family:Arial,sans-serif;">
+  <h2>⬆️ Upload Video</h2>
+  <p>Choose a video from your phone to preview it.</p>
+
+  <input id="eh-video-file" type="file" accept="video/*"
+    style="display:block;width:100%;margin:16px 0;">
+
+  <input id="eh-video-caption" type="text" maxlength="150"
+    placeholder="Write a caption..."
+    style="box-sizing:border-box;width:100%;padding:12px;border-radius:8px;">
+
+  <video id="eh-video-preview" controls playsinline
+    style="display:none;width:100%;margin-top:16px;border-radius:12px;"></video>
+
+  <p id="eh-upload-status" aria-live="polite" style="font-size:14px;"></p>
+</section>
+
+<script>
+(function () {
+  const fileInput = document.getElementById('eh-video-file');
+  const preview = document.getElementById('eh-video-preview');
+  const status = document.getElementById('eh-upload-status');
+  let previousUrl = '';
+
+  fileInput.addEventListener('change', function () {
+    const file = this.files && this.files[0];
+
+    if (previousUrl) URL.revokeObjectURL(previousUrl);
+    previousUrl = '';
+
+    if (!file) {
+      preview.pause();
+      preview.removeAttribute('src');
+      preview.style.display = 'none';
+      status.textContent = '';
+      return;
+    }
+
+    if (!file.type.startsWith('video/')) {
+      this.value = '';
+      status.textContent = 'Please select a video file.';
+      return;
+    }
+
+    previousUrl = URL.createObjectURL(file);
+    preview.src = previousUrl;
+    preview.style.display = 'block';
+    status.textContent =
+      'Video selected: ' + file.name +
+      '. Preview only — it has not been published.';
+  });
+})();
+</script>
+</body>
+
 
 </body>
 </html>
