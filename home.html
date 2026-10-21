@@ -175,7 +175,58 @@ else{document.getElementById('msg').textContent='Find more videos on Telegram.';
   <h3>🎬 My Videos</h3>
   <p style="color:#bdb4d5;font-size:14px;">Your videos will appear here.</p>
 </section>
-<!-- End EthioHub Profile Preview -->
+<!-- End 
+<!-- EthioHub Sign Up / Login -->
+<section id="eh-auth" style="margin:24px 12px;padding:22px;background:#10101c;color:white;border:1px solid #49356b;border-radius:20px;font-family:Arial,sans-serif;">
+  <div style="text-align:center;">
+    <h2 style="color:#a78bfa;margin-bottom:6px;">🚀 Join EthioHub</h2>
+    <p style="color:#c4b5fd;">Your world. Your videos. Your community.</p>
+  </div>
+
+  <div style="display:flex;gap:10px;margin:20px 0;">
+    <button type="button" onclick="ehShow('signup')" style="flex:1;padding:12px;border:0;border-radius:9px;background:#7c3aed;color:white;font-weight:bold;">Sign Up</button>
+    <button type="button" onclick="ehShow('login')" style="flex:1;padding:12px;border:1px solid #7c3aed;border-radius:9px;background:#211a32;color:white;font-weight:bold;">Login</button>
+  </div>
+
+  <form id="eh-signup" onsubmit="event.preventDefault();ehNotice();" >
+    <h3>Create your account</h3>
+    <label for="eh-name">Display name</label>
+    <input id="eh-name" type="text" placeholder="Your name" required style="box-sizing:border-box;width:100%;padding:13px;margin:7px 0 14px;border-radius:9px;border:1px solid #55436f;background:#1c1828;color:white;">
+    <label for="eh-email">Email address</label>
+    <input id="eh-email" type="email" placeholder="you@example.com" required style="box-sizing:border-box;width:100%;padding:13px;margin:7px 0 14px;border-radius:9px;border:1px solid #55436f;background:#1c1828;color:white;">
+    <label for="eh-password">Password</label>
+    <input id="eh-password" type="password" placeholder="Create a password" minlength="8" required style="box-sizing:border-box;width:100%;padding:13px;margin:7px 0 18px;border-radius:9px;border:1px solid #55436f;background:#1c1828;color:white;">
+    <button type="submit" style="width:100%;padding:13px;border:0;border-radius:10px;background:#7c3aed;color:white;font-weight:bold;">Create Account</button>
+  </form>
+
+  <form id="eh-login" onsubmit="event.preventDefault();ehNotice();" style="display:none;">
+    <h3>Welcome back!</h3>
+    <label for="eh-login-email">Email address</label>
+    <input id="eh-login-email" type="email" placeholder="you@example.com" required style="box-sizing:border-box;width:100%;padding:13px;margin:7px 0 14px;border-radius:9px;border:1px solid #55436f;background:#1c1828;color:white;">
+    <label for="eh-login-password">Password</label>
+    <input id="eh-login-password" type="password" placeholder="Your password" required style="box-sizing:border-box;width:100%;padding:13px;margin:7px 0 18px;border-radius:9px;border:1px solid #55436f;background:#1c1828;color:white;">
+    <button type="submit" style="width:100%;padding:13px;border:0;border-radius:10px;background:#7c3aed;color:white;font-weight:bold;">Login</button>
+  </form>
+
+  <p id="eh-auth-message" style="font-size:13px;color:#fbbf24;text-align:center;margin-top:18px;">
+    🔒 Account system is waiting for Supabase connection.
+  </p>
+</section>
+
+<script>
+function ehShow(mode) {
+  document.getElementById('eh-signup').style.display = mode === 'signup' ? 'block' : 'none';
+  document.getElementById('eh-login').style.display = mode === 'login' ? 'block' : 'none';
+  document.getElementById('eh-auth-message').textContent =
+    '🔒 Connect Supabase to activate real accounts.';
+}
+function ehNotice() {
+  document.getElementById('eh-auth-message').textContent =
+    '⏳ Not connected yet. Real registration and login will work after Supabase setup.';
+}
+</script>
+<!-- End EthioHub Sign Up / Login -->
+ Profile Preview -->
 
     <a href="https://t.me/+_Sp66kHYjgliZjk8" target="_blank" rel="noopener noreferrer" style="display:block;padding:14px;background:#229ed9;color:white;text-decoration:none;text-align:center;font-weight:bold;">
       ▶ Watch Videos on Telegram
