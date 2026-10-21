@@ -135,5 +135,53 @@ else{document.getElementById('msg').textContent='Find more videos on Telegram.';
 </section>
 <!-- End Entertainment Upgrade -->
 
+<!-- EthioHub Video Experience -->
+<section id="videos" style="margin:16px 12px;padding:18px;background:#191927;border-radius:16px;color:white;">
+  <h2>🎬 Entertainment Videos</h2>
+  <p style="color:#c7c7d4;">Watch, enjoy and share on EthioHub!</p>
+
+  <div style="background:#242438;border-radius:14px;overflow:hidden;">
+    <div style="padding:14px;">
+      <div style="font-size:22px;">😂 Comedy & Fun</div>
+      <p style="color:#c7c7d4;">Discover more entertaining clips.</p>
+    </div>
+
+    <a href="https://t.me/+_Sp66kHYjgliZjk8" target="_blank" rel="noopener noreferrer" style="display:block;padding:14px;background:#229ed9;color:white;text-decoration:none;text-align:center;font-weight:bold;">
+      ▶ Watch Videos on Telegram
+    </a>
+  </div>
+
+  <div style="margin-top:16px;padding:16px;background:#242438;border-radius:14px;">
+    <h3 style="margin-top:0;">❤️ Like EthioHub</h3>
+    <button id="ethioLike" onclick="toggleEthioLike()" style="padding:11px 18px;background:#db2777;color:white;border:0;border-radius:9px;font-weight:bold;">🤍 Like <span id="ethioLikeCount">0</span></button>
+    <p id="ethioLikeMessage" style="color:#c7c7d4;font-size:13px;">Tap Like to show your support!</p>
+  </div>
+
+  <div style="margin-top:16px;padding:16px;background:#242438;border-radius:14px;">
+    <h3 style="margin-top:0;">💬 Join the Conversation</h3>
+    <p style="color:#c7c7d4;">Share your thoughts with the EthioHub community.</p>
+    <a href="https://t.me/+_Sp66kHYjgliZjk8" target="_blank" rel="noopener noreferrer" style="display:block;padding:12px;background:#3730a3;color:white;text-decoration:none;text-align:center;border-radius:9px;">
+      💬 Comment on Telegram
+    </a>
+  </div>
+</section>
+
+<script>
+let ethioLiked = false;
+let ethioLikes = 0;
+
+function toggleEthioLike() {
+  ethioLiked = !ethioLiked;
+  ethioLikes += ethioLiked ? 1 : -1;
+  document.getElementById('ethioLikeCount').textContent = ethioLikes;
+  document.getElementById('ethioLike').innerHTML =
+    (ethioLiked ? '❤️ Liked ' : '🤍 Like ') +
+    '<span id="ethioLikeCount">' + ethioLikes + '</span>';
+  document.getElementById('ethioLikeMessage').textContent =
+    ethioLiked ? 'Thanks for supporting EthioHub!' : 'You removed your Like.';
+}
+</script>
+<!-- End EthioHub Video Experience -->
+
 </body>
 </html>
