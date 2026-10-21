@@ -398,6 +398,47 @@ function ybPostComment() {
 
 </script><!-- የyoung.mp4 ኮድ እዚህ ይገባል -->
 
+<!-- EthioHub Locked Video Payment Page -->
+<section id="eh-payment-page" style="display:none;margin:20px 12px;padding:22px;background:#10101c;color:white;border:1px solid #6d28d9;border-radius:18px;font-family:Arial,sans-serif;">
+  <button onclick="ehClosePayment()" style="padding:8px 12px;background:#29213f;color:white;border:0;border-radius:8px;">← Back to videos</button>
+
+  <div style="text-align:center;padding:20px 0;">
+    <div style="font-size:54px;">🔒</div>
+    <h2 id="eh-locked-title">Premium Video</h2>
+    <p style="color:#c4b5fd;">This video requires payment to watch.</p>
+    <h3 style="font-size:28px;color:#a78bfa;">EthioHub Premium</h3>
+    <p>Access exclusive videos after your payment is verified.</p>
+  </div>
+
+  <div style="padding:15px;background:#211a32;border-radius:12px;">
+    <h3>💳 How to unlock</h3>
+    <p>1. Check the official payment instructions.</p>
+    <p>2. Complete your payment using the confirmed method.</p>
+    <p>3. Submit your receipt for verification.</p>
+    <p style="color:#fbbf24;font-size:13px;">Payment is not automatic yet. Do not send money until your payment details and verification process are configured.</p>
+  </div>
+
+  <button onclick="ehPaymentHelp()" style="width:100%;margin-top:16px;padding:13px;background:#7c3aed;color:white;border:0;border-radius:10px;font-weight:bold;">📩 Payment Instructions</button>
+  <p id="eh-payment-note" style="color:#fbbf24;text-align:center;font-size:13px;"></p>
+</section>
+
+<script>
+function ehOpenPayment(title) {
+  document.getElementById('eh-locked-title').textContent = title || 'Premium Video';
+  document.getElementById('eh-payment-page').style.display = 'block';
+  document.getElementById('eh-payment-note').textContent = '';
+  document.getElementById('eh-payment-page').scrollIntoView({behavior:'smooth'});
+}
+function ehClosePayment() {
+  document.getElementById('eh-payment-page').style.display = 'none';
+}
+function ehPaymentHelp() {
+  document.getElementById('eh-payment-note').textContent =
+    'Payment instructions will be available after the official payment method is connected.';
+}
+</script>
+<!-- End EthioHub Locked Video Payment Page -->
+
 </body>
 </html>
 <!-- End EthioHub Video -->
