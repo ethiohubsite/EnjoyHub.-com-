@@ -290,5 +290,29 @@ function ybPostComment() {
   field.value = '';
   document.getElementById('ybStatus').textContent = 'Comment added! ❤️';
 }
+<!-- EthioHub Second Video -->
+<section style="margin:20px 12px;padding:16px;background:#10101c;border:1px solid #373052;border-radius:18px;color:white;">
+  <h2>🎬 Young Video</h2>
+
+  <video controls playsinline preload="metadata"
+    style="display:block;width:100%;border-radius:12px;background:#000;">
+    <source src="young.mp4" type="video/mp4">
+    Your browser does not support this video.
+  </video>
+
+  <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:12px;">
+    <button onclick="this.textContent=this.textContent==='🤍 Like 0'?'❤️ Liked 1':'🤍 Like 0'" style="flex:1;padding:11px 5px;background:#39213c;color:white;border:0;border-radius:9px;">🤍 Like 0</button>
+
+    <button onclick="this.textContent=this.textContent==='☆ Favorite'?'⭐ Favorited':'☆ Favorite'" style="flex:1;padding:11px 5px;background:#3b321d;color:white;border:0;border-radius:9px;">☆ Favorite</button>
+
+    <button onclick="document.getElementById('youngComment').focus()" style="flex:1;padding:11px 5px;background:#20334b;color:white;border:0;border-radius:9px;">💬 Comment</button>
+
+    <button onclick="if(navigator.share){navigator.share({title:'Young Video - EthioHub',url:location.href})}else{prompt('Copy website link:',location.href)}" style="flex:1;padding:11px 5px;background:#30254a;color:white;border:0;border-radius:9px;">↗ Share</button>
+  </div>
+
+  <textarea id="youngComment" placeholder="Write a comment..." style="box-sizing:border-box;width:100%;margin-top:12px;min-height:65px;padding:10px;background:#242438;color:white;border:1px solid #45455d;border-radius:9px;"></textarea>
+</section>
+<!-- End Second Video -->
+
 </script>
 <!-- End EthioHub Video -->
