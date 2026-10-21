@@ -1,1 +1,96 @@
 home.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EthioHub 🌍</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0f0f18;color:white;font-family:Arial,sans-serif}
+header{padding:28px 16px;text-align:center;background:linear-gradient(135deg,#111827,#312e81,#701a75)}
+h1{font-size:36px;margin:10px 0}
+section{margin:16px 12px;padding:18px;background:#191927;border-radius:15px}
+input{width:100%;padding:13px;background:#242438;color:white;border:1px solid #45455d;border-radius:9px;font-size:15px}
+button,.btn{display:inline-block;padding:12px 16px;background:#7c3aed;color:white;border:0;border-radius:9px;text-decoration:none;font-weight:bold;margin-top:10px}
+nav{display:flex;gap:8px;overflow-x:auto;padding:12px}
+nav a{white-space:nowrap;padding:10px;background:#29223f;color:white;text-decoration:none;border-radius:9px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tile{padding:20px 8px;text-align:center;border-radius:12px;color:white;text-decoration:none;background:#29223f}
+.tile div{font-size:30px}
+p{line-height:1.6;color:#d1d1df}
+.telegram{display:block;text-align:center;padding:14px;background:#229ed9;color:white;text-decoration:none;border-radius:10px;font-weight:bold}
+footer{text-align:center;padding:24px;color:#aaaabd}
+</style>
+</head>
+<body>
+<header id="top">
+<div>WELCOME TO</div>
+<h1>EthioHub 🌍</h1>
+<p>Your world of entertainment, comedy and viral videos!</p>
+<div>ENTERTAINMENT • COMEDY • GOOD VIBES</div>
+</header>
+
+<section id="search">
+<h2>🔍 Find Something Fun</h2>
+<input id="q" placeholder="Search comedy, videos, technology...">
+<button onclick="searchHub()">Search</button>
+<p id="msg">Try: Comedy, Entertainment or Videos</p>
+</section>
+
+<nav>
+<a href="#top">🏠 Home</a>
+<a href="#categories">🌍 Categories</a>
+<a href="#entertainment">🎬 Videos</a>
+<a href="#comedy">😂 Comedy</a>
+<a href="#community">✈️ Telegram</a>
+</nav>
+
+<section id="categories">
+<h2>🌍 Explore EthioHub</h2>
+<div class="grid">
+<a class="tile" href="#entertainment"><div>🎬</div><strong>Entertainment</strong><p>Comedy, Music & Videos</p></a>
+<a class="tile" href="#technology"><div>💻</div><strong>Technology</strong><p>Apps & Digital Skills</p></a>
+<a class="tile" href="#business"><div>💼</div><strong>Business</strong><p>Business Ideas & Income</p></a>
+<a class="tile" href="#education"><div>📚</div><strong>Education</strong><p>Learn New Skills</p></a>
+</div>
+</section>
+
+<section id="entertainment">
+<h2>🎬 Entertainment</h2>
+<p>Comedy, music and entertainment videos.</p>
+<a class="telegram" href="https://t.me/+_Sp66kHYjgliZjk8" target="_blank" rel="noopener noreferrer">🎬 Watch Videos on Telegram →</a>
+</section>
+
+<section id="comedy">
+<h2>😂 Comedy Zone</h2>
+<p>Enjoy comedy and discover more fun videos!</p>
+<a class="telegram" href="https://t.me/+_Sp66kHYjgliZjk8" target="_blank" rel="noopener noreferrer">😂 Watch Comedy</a>
+</section>
+
+<section id="technology"><h2>💻 Technology</h2><p>Apps and digital skills.</p><p>Coming Soon 🚀</p></section>
+<section id="business"><h2>💼 Business</h2><p>Business ideas and income.</p><p>Coming Soon 🚀</p></section>
+<section id="education"><h2>📚 Education</h2><p>Learn new skills with EthioHub.</p><p>Coming Soon 🚀</p></section>
+
+<section id="community" style="text-align:center">
+<h2>🌍 Join the EthioHub Community</h2>
+<p>Stay connected and discover more entertainment!</p>
+<a class="telegram" href="https://t.me/+_Sp66kHYjgliZjk8" target="_blank" rel="noopener noreferrer">✈️ Join EthioHub on Telegram</a>
+</section>
+
+<footer>© 2026 EthioHub<br><br>Enjoy • Share • Discover</footer>
+
+<script>
+function searchHub(){
+const q=document.getElementById('q').value.toLowerCase().trim();
+const sections=['entertainment','comedy','technology','business','education'];
+const found=sections.find(s=>q.includes(s))||
+(q.includes('video')||q.includes('music')?'entertainment':'');
+if(!q){document.getElementById('msg').textContent='Type something to search.';return;}
+if(found){document.getElementById(found).scrollIntoView({behavior:'smooth'});document.getElementById('msg').textContent='Showing '+found+'.';}
+else{document.getElementById('msg').textContent='Find more videos on Telegram.';window.open('https://t.me/+_Sp66kHYjgliZjk8','_blank');}
+}
+</script>
+</body>
+</html>
