@@ -10,9 +10,26 @@ body{margin:0;background:#f0f2f5;color:#202124;font-family:Arial,sans-serif}
 .topbar{background:#fff;padding:14px 18px;position:sticky;top:0;z-index:5;box-shadow:0 2px 6px #0001}
 .brand{font-size:25px;font-weight:800;color:#16864a}
 .wrap{max-width:760px;margin:auto;padding:14px}
-.welcome{background:#159447;color:white;padding:27px 20px;border-radius:14px;margin-bottom:15px;text-align:center}
+
+/* የባነር ፎቶ እና የአረንጓዴ ቀለም ቅልቅል */
+.welcome{
+  background: linear-gradient(rgba(21, 148, 71, 0.8), rgba(21, 148, 71, 0.8)), url('photo1.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 35px 20px;
+  border-radius: 14px;
+  margin-bottom: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.welcome:active {
+  transform: scale(0.98);
+}
 .welcome h1{margin:0 0 10px;font-size:29px}
 .welcome p{margin:0;line-height:1.6}
+
 .profile{background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px #0001}
 .cover{height:145px;background:linear-gradient(135deg,#087b3a,#20b65b,#075b35)}
 .profile-info{padding:0 18px 18px}
@@ -42,7 +59,8 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
 
 <main class="wrap" id="home">
 
-  <section class="welcome">
+  <!-- ሲነካ በቀጥታ ወደ ቪዲዮ ክፍል (#videos) የሚወስደው አዲሱ ባነር -->
+  <section class="welcome" onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'})">
     <h1>Welcome to EthioHub! 🌍</h1>
     <p>Your world of entertainment.<br>
     Discover videos, enjoy photos, and share the fun!</p>
@@ -89,7 +107,7 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
       🎥 More entertaining videos are coming soon!<br>
       Visit our Telegram channel to watch videos.
       <br>
-      <a class="telegram" href="https://t.me/+_Sp66kHYjgliZjk8" target="_blank" rel="noopener">
+      <a class="telegram" href="https://t.me" target="_blank" rel="noopener">
         ▶ Watch Videos on Telegram
       </a>
     </div>
@@ -98,7 +116,7 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
   <section class="card telegram-box">
     <h2>✈️ Join EthioHub on Telegram</h2>
     <p>Watch videos and stay connected with our community.</p>
-    <a class="telegram" href="https://t.me/+_Sp66kHYjgliZjk8" target="_blank" rel="noopener">
+    <a class="telegram" href="https://t.me" target="_blank" rel="noopener">
       Join Telegram Channel
     </a>
   </section>
