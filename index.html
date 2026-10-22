@@ -158,3 +158,156 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
     ✈️ OPEN ETHIOHUB TELEGRAM
   </a>
 </section>
+<!-- EthioHub Premium Video -->
+<section class="card" id="premium-videos">
+  <h2>🎬 EthioHub Premium</h2>
+
+  <div style="background:#111;border-radius:14px;padding:10px;color:white">
+    <video controls playsinline preload="metadata"
+      style="width:100%;border-radius:10px"
+      poster="photo1.jpg">
+      <source src="ybnew.mp4" type="video/mp4">
+      Your browser does not support video.
+    </video>
+
+    <h3>🔥 Featured Video</h3>
+    <p>Enjoy exclusive content on EthioHub!</p>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button onclick="hubLike(this)">❤️ Like <span>0</span></button>
+      <button onclick="hubComment()">💬 Comment</button>
+      <button onclick="hubShare()">↗ Share</button>
+    </div>
+    <div id="comment-area"></div>
+  </div>
+
+  <h3 style="margin-top:22px">🔒 Exclusive Videos</h3>
+
+  <button onclick="showPayment()"
+    style="width:100%;margin:6px 0;background:#171717;color:#ffd166;padding:18px">
+    🔒 Premium Video 2 — Unlock Now
+  </button>
+
+  <button onclick="showPayment()"
+    style="width:100%;margin:6px 0;background:#171717;color:#ffd166;padding:18px">
+    🔒 Premium Video 3 — Unlock Now
+  </button>
+</section>
+
+<!-- Premium Payment -->
+<section class="card" id="premium-payment" style="display:none">
+  <h2>👑 Unlock EthioHub Premium</h2>
+  <p>Pay using one of the methods below, then submit your receipt for verification.</p>
+
+  <div style="background:#f3f6ff;padding:15px;border-radius:12px;margin:12px 0">
+    <h3>📱 Telebirr</h3>
+    <p>Account: <strong>0927487505</strong></p>
+    <button onclick="copyHub('0927487505')">📋 Copy Number</button>
+  </div>
+
+  <div style="background:#f3f6ff;padding:15px;border-radius:12px;margin:12px 0">
+    <h3>🏦 Wegagen Bank</h3>
+    <p>Account: <strong>1157193230101</strong></p>
+    <button onclick="copyHub('1157193230101')">📋 Copy Account</button>
+  </div>
+
+  <label for="payment-reference">Payment reference / transaction ID</label>
+  <input id="payment-reference" type="text"
+    placeholder="Enter transaction ID"
+    style="width:100%;padding:12px;margin:10px 0">
+
+  <label for="payment-name">Your name</label>
+  <input id="payment-name" type="text"
+    placeholder="Enter your name"
+    style="width:100%;padding:12px;margin:10px 0">
+
+  <button onclick="submitHubPayment()"
+    style="width:100%;background:#1877f2;color:white;margin-top:10px">
+    📩 Submit Payment Details
+  </button>
+
+  <p id="payment-message" aria-live="polite"></p>
+
+  <button onclick="hidePayment()">← Back to Videos</button>
+</section>
+
+<script>
+function hubLike(button) {
+  const count = button.querySelector("span");
+  count.textContent = Number(count.textContent) + 1;
+}
+
+function hubComment() {
+  const area = document.getElementById("comment-area");
+  const input = document.createElement("input");
+  input.placeholder = "Write a comment...";
+  input.style.cssText = "width:65%;padding:10px;margin-top:12px";
+
+  const send = document.createElement("button");
+  send.textContent = "Post";
+  send.onclick = function() {
+    if (!input.value.trim()) return;
+    const p = document.createElement("p");
+    p.textContent = "💬 " + input.value.trim();
+    area.appendChild(p);
+    input.value = "";
+  };
+
+  area.replaceChildren(input, send);
+}
+
+async function hubShare() {
+  const data = {
+    title: "EthioHub Premium",
+    text: "Watch videos on EthioHub!",
+    url: location.href
+  };
+
+  if (navigator.share) {
+    try { await navigator.share(data); } catch (e) {}
+  } else {
+    try {
+      await navigator.clipboard.writeText(location.href);
+      alert("Website link copied!");
+    } catch (e) {
+      prompt("Copy your website link:", location.href);
+    }
+  }
+}
+
+function showPayment() {
+  document.getElementById("premium-payment").style.display = "block";
+  document.getElementById("premium-payment")
+    .scrollIntoView({behavior:"smooth"});
+}
+
+function hidePayment() {
+  document.getElementById("premium-payment").style.display = "none";
+  document.getElementById("premium-videos")
+    .scrollIntoView({behavior:"smooth"});
+}
+
+function copyHub(value) {
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(value)
+      .then(() => alert("Copied: " + value))
+      .catch(() => prompt("Copy this number:", value));
+  } else {
+    prompt("Copy this number:", value);
+  }
+}
+
+function submitHubPayment() {
+  const ref = document.getElementById("payment-reference").value.trim();
+  const name = document.getElementById("payment-name").value.trim();
+  const message = document.getElementById("payment-message");
+
+  if (!ref || !name) {
+    message.textContent = "Please enter your name and transaction ID.";
+    return;
+  }
+
+  message.textContent =
+    "Details entered. Payment must be verified by the administrator before Premium access is granted.";
+}
+</script>
