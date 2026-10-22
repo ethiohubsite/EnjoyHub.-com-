@@ -62,12 +62,6 @@ footer{text-align:center;padding:25px;color:#aaa}
   <button onclick="showPage('payment')">💳 Payment</button>
 </nav>
 <main>
-<section id="home" class="page active">
-  <div class="hero">
-    <h1>Discover More on EthioHub ✨</h1>
-    <p>Videos • Photos • Entertainment • Technology</p>
-    <button onclick="showPage('videos')">Explore Videos</button>
-  </div>
 
   <input id="search" placeholder="🔍 Search EthioHub..." oninput="searchPosts()">
 
@@ -77,26 +71,7 @@ footer{text-align:center;padding:25px;color:#aaa}
     <button onclick="filterPosts('photo')">Photos</button>
     <button onclick="filterPosts('technology')">Technology</button>
   </div>
-
-  <div id="feed">
-    <article class="card" data-type="video" data-search="jordan 12 shoes">
-      <h3>🔥 Jordan 12</h3>
-      <video controls playsinline preload="metadata">
-        <source src="ybnew.mp4" type="video/mp4">
-        Your browser does not support this video.
-      </video>
-      <p>Jordan 12 👟🔥 Watch and enjoy on EthioHub!</p>
-      <button onclick="likePost(this)">❤️ Like <span>0</span></button>
-      <button onclick="sharePost()">↗ Share</button>
-      <p class="small">#EthioHub #Jordan12</p>
-    </article>
-
-    <article class="card" data-type="technology" data-search="ethiohub business card">
-      <h3>💼 EthioHub Business Card</h3>
-      <p>Welcome to EthioHub — your place for entertainment and digital content.</p>
-      <button onclick="likePost(this)">❤️ Like <span>0</span></button>
-      <button onclick="sharePost()">↗ Share</button>
-    </article>
+      
   </div>
 </section>
 
@@ -131,15 +106,6 @@ footer{text-align:center;padding:25px;color:#aaa}
     <div id="preview"></div>
   </div>
   <p class="small">Demo only: posts are not uploaded to a shared server and may disappear when the page reloads.</p>
-</section>
-
-<section id="profile" class="page">
-  <h2>👤 Your Profile</h2>
-  <div class="card">
-    <h3>🌟 Welcome to EthioHub</h3>
-    <p>Entertainment • Videos • Photos • Technology</p>
-    <a href="https://t.me/+_Sp66kHYjgliZjk8" target="_blank">Join our Telegram Channel ↗</a>
-  </div>
 </section>
 
 <section id="payment" class="page">
