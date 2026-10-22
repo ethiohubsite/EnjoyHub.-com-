@@ -12,10 +12,10 @@ body{margin:0;background:#f0f2f5;color:#202124;font-family:Arial,sans-serif}
 .wrap{max-width:760px;margin:auto;padding:14px}
 .profile{background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px #0001}
 
-/* በትልቁ የጀርባ ፎቶ (Cover) ላይ photo1.jpg ገብቷል፤ የድሮው ሰማያዊ ቀለምም አብሮ አለ */
+/* የድሮው ሰማያዊ/ሐምራዊ መደብ ላይ photo1.jpg ፎቶ ገባ */
 .cover{
   height:190px;
-  background:linear-gradient(135deg, rgba(16, 27, 59, 0.4), rgba(24, 119, 242, 0.4)), url('photo1.jpg');
+  background:linear-gradient(135deg, rgba(16, 27, 59, 0.3), rgba(24, 119, 242, 0.3)), url('photo1.jpg');
   background-size:cover;
   background-position:center;
   cursor:pointer;
@@ -23,7 +23,7 @@ body{margin:0;background:#f0f2f5;color:#202124;font-family:Arial,sans-serif}
 
 .profile-info{padding:0 18px 20px}
 
-/* በትንሿ ክብ ምስል (Avatar) ላይ photo2.jpg ገብቷል */
+/* በትንሿ ክብ ምስል ላይ photo2.jpg ፎቶ ገባ */
 .avatar{
   width:112px;
   height:112px;
@@ -45,8 +45,10 @@ h2{font-size:19px;margin:0 0 12px}
 .gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .gallery img{width:100%;height:230px;object-fit:cover;border-radius:9px;display:block}
 .actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
-button{border:0;border-radius:8px;padding:10px 14px;background:#e7f0ff;color:#1877f2;font-weight:bold;cursor:pointer}
+button,.telegram{border:0;border-radius:8px;padding:10px 14px;background:#e7f0ff;color:#1877f2;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
 .video-note{text-align:center;padding:22px;background:#f7f8fa;border-radius:10px;color:#65676b}
+.telegram-box{background:#e7f0ff;text-align:center}
+.telegram{background:#1877f2;color:white;margin-top:8px}
 footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
 @media(max-width:480px){.cover{height:150px}.gallery img{height:180px}}
 </style>
@@ -60,10 +62,10 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
 <main class="wrap">
 
   <section class="profile">
-    <!-- ሲነካ ወደ ቪዲዮዎች የሚወስድ ትልቁ የጀርባ ፎቶ -->
+    <!-- ሲነካ ወደ ቪዲዮዎች የሚወስድ የጀርባ ፎቶ -->
     <div class="cover" onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'})"></div>
     <div class="profile-info">
-      <!-- ሲነካ ወደ ቪዲዮዎች የሚወስድ ትንሿ ክብ ምስል -->
+      <!-- siነካ ወደ ቪዲዮዎች የሚወስድ የፕሮፋይል ፎቶ -->
       <img class="avatar" src="photo2.jpg" alt="EthioHub profile photo" onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'})">
       <h1>EthioHub</h1>
       <div class="muted">🎬 Entertainment · 📸 Photos</div>
@@ -76,7 +78,7 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
     </div>
   </section>
 
-  <!-- አንተ የፈለግከው "Welcome to EthioHub" ካርድ በትክክል እዚህ አለ -->
+  <!-- Welcome to EthioHub ጽሑፍ -->
   <section class="card" id="feed">
     <h2>✨ Welcome to EthioHub</h2>
     <p>Enjoy entertaining content, discover great photos, and stay tuned for more.</p>
@@ -86,6 +88,7 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
     </div>
   </section>
 
+  <!-- የፎቶ ጋለሪ -->
   <section class="card" id="photos">
     <h2>📸 Photos</h2>
     <div class="gallery">
@@ -98,9 +101,26 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
     </div>
   </section>
 
+  <!-- የቪዲዮ ጋለሪ እና የቴሌግራም ሊንክ -->
   <section class="card" id="videos">
     <h2>🎬 Entertainment Videos</h2>
-    <div class="video-note">🎥 More entertaining videos coming soon!</div>
+    <div class="video-note">
+      🎥 More entertaining videos coming soon!<br>
+      Visit our Telegram channel to watch videos.
+      <br>
+      <a class="telegram" href="https://t.me" target="_blank" rel="noopener">
+        ▶ Watch Videos on Telegram
+      </a>
+    </div>
+  </section>
+
+  <!-- የቴሌግራም መቀላቀያ ሳጥን (Join ቴሌግራም) -->
+  <section class="card telegram-box">
+    <h2>✈️ Join EthioHub on Telegram</h2>
+    <p>Watch videos and stay connected with our community.</p>
+    <a class="telegram" href="https://t.me" target="_blank" rel="noopener">
+      Join Telegram Channel
+    </a>
   </section>
 
 </main>
