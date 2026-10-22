@@ -209,6 +209,47 @@ function createPost(){
   note.textContent='Preview only — this post has not been uploaded publicly.';
   preview.appendChild(note);
 
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EthioHub Payment</title>
+    <style>
+        body { background-color: #0b0c10; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
+        .box { background-color: #1f2833; border-radius: 15px; padding: 20px; max-width: 400px; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .price { font-size: 28px; color: #ff0055; font-weight: bold; margin: 15px 0; }
+        .btn-pay { display: block; width: 90%; background-color: #00cd6c; color: white; border: none; padding: 12px; margin: 10px auto; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
+        .btn-tele { background-color: #0056b3; } /* ለቴሌብር */
+        .btn-cbe { background-color: #purple; } /* ለሲቢኢ */
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h2>EthioHub Premium 🚀</h2>
+        <p>ሁሉንም ቪዲዮዎች ያለገደብ ለማየት አባል ይሁኑ!</p>
+        
+        <!-- የወር ክፍያ ዋጋ -->
+        <div class="price">99 ETB / በወር</div>
+
+        <!-- የክፍያ አማራጮች በተን -->
+        <button class="btn-pay btn-tele" onclick="payWith('Telebirr')">በ Telebirr ክፈል</button>
+        <button class="btn-pay" style="background-color: #7b1fa2;" onclick="payWith('CBE Birr')">በ CBE Birr ክፈል</button>
+        <button class="btn-pay" style="background-color: #ff9100;" onclick="payWith('Chapa')">በሌሎች ካርዶች (Chapa)</button>
+        
+        <br>
+        <a href="index.html" style="color: #666; text-decoration: none; font-size: 14px;">ወደ ኋላ ተመለስ</a>
+    </div>
+
+    <script>
+    function payWith(provider) {
+        alert(provider + " የክፍያ ስርዓት በቅርቡ ይገናኛል! አሁን ዲዛይኑን ብቻ ነው ያዘጋጀነው።");
+    }
+    </script>
+
+</body>
+</html>
 
 </html>
 <script>
