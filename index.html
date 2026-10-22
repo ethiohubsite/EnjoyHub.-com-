@@ -311,3 +311,51 @@ function submitHubPayment() {
     "Details entered. Payment must be verified by the administrator before Premium access is granted.";
 }
 </script>
+<div style="background:#e7f0ff;padding:16px;border-radius:12px;margin:15px 0">
+  <h3>✅ Already Paid?</h3>
+  <p>ክፍያ ከፍለዋል? የክፍያ ዝርዝርዎን ይላኩልን።</p>
+
+  <label for="customer-name">Your Name</label>
+  <input id="customer-name" type="text"
+    placeholder="Enter your name"
+    style="width:100%;padding:12px;margin:8px 0">
+
+  <label for="transaction-id">Transaction ID</label>
+  <input id="transaction-id" type="text"
+    placeholder="Enter payment reference"
+    style="width:100%;padding:12px;margin:8px 0">
+
+  <button onclick="sendPaymentRequest()"
+    style="width:100%;background:#1877f2;color:white;margin-top:8px">
+    📩 Submit Payment Details
+  </button>
+
+  <p id="request-status"></p>
+</div>
+
+<script>
+function sendPaymentRequest() {
+  const name = document.getElementById('customer-name').value.trim();
+  const ref = document.getElementById('transaction-id').value.trim();
+
+  if (!name || !ref) {
+    alert('እባክዎ ስምዎንና Transaction ID ያስገቡ።');
+    return;
+  }
+
+  const message =
+    'EthioHub Premium Payment Request%0A' +
+    'Name: ' + encodeURIComponent(name) + '%0A' +
+    'Transaction ID: ' + encodeURIComponent(ref);
+
+  document.getElementById('request-status').textContent =
+    'ዝርዝሮቹ ተዘጋጅተዋል። Telegram ይከፈታል።';
+
+  window.open(
+    'https://t.me/share/url?url=' +
+    encodeURIComponent('https://t.me/+_Sp66kHYjgliZjk8') +
+    '&text=' + message,
+    '_blank'
+  );
+}
+</script>
