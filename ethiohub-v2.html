@@ -1,1 +1,206 @@
-ethiohub-v2.html 
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EthioHub</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101018;color:white;font-family:Arial,sans-serif}
+header{position:sticky;top:0;background:#1b1a27;padding:15px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+.logo{font-size:25px;font-weight:bold;color:#ff2d75}
+a{color:#25e6df;text-decoration:none}
+nav{display:flex;gap:10px;justify-content:center;padding:12px;background:#191824;flex-wrap:wrap}
+button{background:#ff2d75;color:white;border:0;border-radius:20px;padding:10px 15px;cursor:pointer}
+input,textarea{width:100%;padding:12px;margin:6px 0;background:#252435;color:white;border:1px solid #48465b;border-radius:10px}
+main{max-width:700px;margin:auto;padding:14px}
+.hero{padding:25px 18px;border-radius:18px;background:linear-gradient(120deg,#ff2d75,#8758ff,#25b8d7);margin-bottom:18px}
+.card{background:#1b1a27;padding:15px;border-radius:16px;margin:15px 0}
+.card h3{margin-top:5px}
+video,img{width:100%;max-height:420px;object-fit:contain;border-radius:12px;background:#08080c}
+.chips{display:flex;gap:8px;overflow:auto;padding:10px 0}
+.chips button{white-space:nowrap;background:#302d43}
+.small{color:#bcbaca;font-size:13px}
+.page{display:none}
+.page.active{display:block}
+footer{text-align:center;padding:25px;color:#aaa}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">EthioHub 🎬</div>
+  <a href="https://t.me/+_Sp66kHYjgliZjk8" target="_blank">Join Telegram ↗</a>
+</header>
+
+<nav>
+  <button onclick="showPage('home')">🏠 Home</button>
+  <button onclick="showPage('videos')">🎬 Videos</button>
+  <button onclick="showPage('photos')">📸 Photos</button>
+  <button onclick="showPage('create')">➕ Create</button>
+  <button onclick="showPage('profile')">👤 Profile</button>
+  <button onclick="showPage('payment')">💳 Payment</button>
+</nav>
+
+<main>
+<section id="home" class="page active">
+  <div class="hero">
+    <h1>Discover More on EthioHub ✨</h1>
+    <p>Videos • Photos • Entertainment • Technology</p>
+    <button onclick="showPage('videos')">Explore Videos</button>
+  </div>
+
+  <input id="search" placeholder="🔍 Search EthioHub..." oninput="searchPosts()">
+
+  <div class="chips">
+    <button onclick="filterPosts('all')">For You</button>
+    <button onclick="filterPosts('video')">Videos</button>
+    <button onclick="filterPosts('photo')">Photos</button>
+    <button onclick="filterPosts('technology')">Technology</button>
+  </div>
+
+  <div id="feed">
+    <article class="card" data-type="video" data-search="jordan 12 shoes">
+      <h3>🔥 Jordan 12</h3>
+      <video controls playsinline preload="metadata">
+        <source src="ybnew.mp4" type="video/mp4">
+        Your browser does not support this video.
+      </video>
+      <p>Jordan 12 👟🔥 Watch and enjoy on EthioHub!</p>
+      <button onclick="likePost(this)">❤️ Like <span>0</span></button>
+      <button onclick="sharePost()">↗ Share</button>
+      <p class="small">#EthioHub #Jordan12</p>
+    </article>
+
+    <article class="card" data-type="technology" data-search="ethiohub business card">
+      <h3>💼 EthioHub Business Card</h3>
+      <p>Welcome to EthioHub — your place for entertainment and digital content.</p>
+      <button onclick="likePost(this)">❤️ Like <span>0</span></button>
+      <button onclick="sharePost()">↗ Share</button>
+    </article>
+  </div>
+</section>
+
+<section id="videos" class="page">
+  <h2>🎬 Videos</h2>
+  <div class="card">
+    <h3>Jordan 12</h3>
+    <video controls playsinline>
+      <source src="ybnew.mp4" type="video/mp4">
+    </video>
+    <p class="small">Add more videos to your GitHub repository to display them here.</p>
+  </div>
+</section>
+
+<section id="photos" class="page">
+  <h2>📸 Photos</h2>
+  <div class="card">
+    <p>Explore photos shared on EthioHub.</p>
+    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80" alt="Featured photo">
+    <p class="small">Featured image</p>
+  </div>
+</section>
+
+<section id="create" class="page">
+  <h2>➕ Create a Post</h2>
+  <div class="card">
+    <p class="small">Choose a photo or video to preview a post on this device.</p>
+    <input id="postTitle" placeholder="Post title">
+    <textarea id="postText" placeholder="Write something..."></textarea>
+    <input id="postFile" type="file" accept="image/*,video/*">
+    <button onclick="createPost()">Publish Preview</button>
+    <div id="preview"></div>
+  </div>
+  <p class="small">Demo only: posts are not uploaded to a shared server and may disappear when the page reloads.</p>
+</section>
+
+<section id="profile" class="page">
+  <h2>👤 Your Profile</h2>
+  <div class="card">
+    <h3>🌟 Welcome to EthioHub</h3>
+    <p>Entertainment • Videos • Photos • Technology</p>
+    <a href="https://t.me/+_Sp66kHYjgliZjk8" target="_blank">Join our Telegram Channel ↗</a>
+  </div>
+</section>
+
+<section id="payment" class="page">
+  <h2>💳 Payment Information</h2>
+  <div class="card">
+    <h3>EthioHub Premium</h3>
+    <p>Access premium content by following the payment instructions provided by EthioHub.</p>
+    <p><strong>Monthly:</strong> 980 ETB</p>
+    <a href="https://t.me/+_Sp66kHYjgliZjk8" target="_blank">
+      <button>Contact us on Telegram</button>
+    </a>
+    <p class="small">This page does not collect payments automatically yet.</p>
+  </div>
+</section>
+</main>
+
+<footer>© 2026 EthioHub · Discover More ✨</footer>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function likePost(btn){
+  const count=btn.querySelector('span');
+  count.textContent=Number(count.textContent)+1;
+}
+function sharePost(){
+  if(navigator.share){
+    navigator.share({title:'EthioHub',text:'Discover more on EthioHub',url:location.href});
+  }else{
+    prompt('Copy this link:',location.href);
+  }
+}
+function filterPosts(type){
+  document.querySelectorAll('#feed article').forEach(card=>{
+    card.style.display=(type==='all'||card.dataset.type===type)?'block':'none';
+  });
+  showPage('home');
+}
+function searchPosts(){
+  const q=document.getElementById('search').value.toLowerCase();
+  document.querySelectorAll('#feed article').forEach(card=>{
+    card.style.display=card.dataset.search.includes(q)?'block':'none';
+  });
+}
+function createPost(){
+  const title=document.getElementById('postTitle').value||'New post';
+  const text=document.getElementById('postText').value;
+  const file=document.getElementById('postFile').files[0];
+  const preview=document.getElementById('preview');
+  preview.innerHTML='';
+  const card=document.createElement('div');
+  card.className='card';
+  const h=document.createElement('h3');
+  h.textContent=title;
+  card.appendChild(h);
+  const p=document.createElement('p');
+  p.textContent=text;
+  card.appendChild(p);
+  if(file){
+    const url=URL.createObjectURL(file);
+    let media;
+    if(file.type.startsWith('video/')){
+      media=document.createElement('video');
+      media.controls=true;
+    }else{
+      media=document.createElement('img');
+      media.alt=title;
+    }
+    media.src=url;
+    card.appendChild(media);
+  }
+  preview.appendChild(card);
+  const note=document.createElement('p');
+  note.className='small';
+  note.textContent='Preview only — this post has not been uploaded publicly.';
+  preview.appendChild(note);
+}
+</script>
+</body>
+</html>
