@@ -332,7 +332,45 @@ function submitHubPayment() {
 
   <p id="request-status"></p>
 </div>
+<!-- EthioHub Premium Plan -->
+<div class="card">
+  <h2>👑 Choose Your Premium Plan</h2>
 
+  <button onclick="chooseEthioHubPlan('7 Days',200)">
+    7 Days — 200 ETB
+  </button>
+
+  <button onclick="chooseEthioHubPlan('14 Days',350)">
+    14 Days — 350 ETB
+  </button>
+
+  <button onclick="chooseEthioHubPlan('21 Days',500)">
+    21 Days — 500 ETB
+  </button>
+
+  <button onclick="chooseEthioHubPlan('30 Days',650)">
+    30 Days — 650 ETB
+  </button>
+
+  <div id="selected-plan" style="display:none;margin-top:15px">
+    <h3 id="plan-name"></h3>
+    <h2 id="plan-price"></h2>
+    <p>Pay with Telebirr or Wegagen Bank.</p>
+    <button onclick="document.getElementById('premium-payment').scrollIntoView({behavior:'smooth'})">
+      Continue to Payment
+    </button>
+  </div>
+</div>
+
+<script>
+function chooseEthioHubPlan(name, price) {
+  document.getElementById('plan-name').textContent =
+    name + ' Premium';
+  document.getElementById('plan-price').textContent =
+    price + ' ETB';
+  document.getElementById('selected-plan').style.display = 'block';
+}
+</script>
 <script>
 function sendPaymentRequest() {
   const name = document.getElementById('customer-name').value.trim();
