@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EthioHub v2</title>
+    <title>EthioHub New Version</title>
     <style>
         body { 
             background-color: #0b0c10; 
             color: white; 
             font-family: sans-serif; 
             margin: 0; 
-            padding: 10px; 
+            padding: 15px; 
             box-sizing: border-box;
         }
         .header { 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            padding: 10px; 
+            padding: 10px 5px; 
         }
         .logo { 
             color: #ff0055; 
@@ -25,14 +25,14 @@
             font-weight: bold; 
         }
         
-        /* አረንጓዴ የዌልካም ባነር ዲዛይን */
+        /* አረንጓዴ የዌልካም ባነር */
         .welcome-banner {
             background: linear-gradient(135deg, #11998e, #38ef7d);
             border-radius: 20px;
             margin: 15px auto;
             padding: 30px 20px;
             text-align: center;
-            width: 95%;
+            width: 100%;
             max-width: 450px;
             box-shadow: 0 8px 25px rgba(56, 239, 125, 0.2);
             box-sizing: border-box;
@@ -61,11 +61,11 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.15);
         }
 
-        /* የቪዲዮ ካርድ ዲዛይን */
+        /* ቪዲዮ ካርድ */
         .video-card {
             background-color: #1f2833; 
             border-radius: 20px; 
-            width: 95%; 
+            width: 100%; 
             max-width: 450px; 
             margin: 20px auto; 
             padding: 15px; 
@@ -109,7 +109,7 @@
     <!-- 1. ሄደር መስመር -->
     <div class="header">
         <div class="logo">EthioHub 🎬</div>
-        <div style="color: #45f3ff; font-size: 14px; cursor: pointer;">Join Telegram ↗</div>
+        <div style="color: #45f3ff; font-size: 14px;">Join Telegram ↗</div>
     </div>
 
     <!-- 2. አረንጓዴ የዌልካም ባነር -->
@@ -121,17 +121,17 @@
 
     <!-- 3. የቪዲዮ ማጫወቻ ካርድ (ybnew.mp4) -->
     <div class="video-card">
-        <h3 style="margin: 0 0 10px 0; color: #ffffff;">🔥 Jordan 12 (አዲስ ቪዲዮ)</h3>
+        <h3 style="margin: 0 0 10px 0; color: #ffffff;">🔥 አዲስ ቪዲዮ (ybnew)</h3>
         
         <div class="video-container" onclick="checkVideoPayment()">
-            <video id="myVideo" preload="metadata">
+            <video preload="metadata">
                 <source src="ybnew.mp4" type="video/mp4">
                 ብሮውዘርዎ ይህንን ቪዲዮ አይደግፍም።
             </video>
             <div class="play-btn">▶</div>
         </div>
 
-        <p style="margin: 10px 0 0 0; color: #ccc; font-size: 15px; font-weight: bold;">Jordan 12 👟🔥 Watch and enjoy on EthioHub!</p>
+        <p style="margin: 10px 0 0 0; color: #ccc; font-size: 15px; font-weight: bold;">Watch and enjoy on EthioHub!</p>
     </div>
 
     <!-- 4. የክፍያ መቆለፊያ ጃቫስክሪፕት -->
