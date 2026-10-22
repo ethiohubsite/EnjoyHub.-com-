@@ -187,18 +187,6 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
     </div>
   </section>
 
-  <section class="card" id="photos">
-    <h2>📸 Photos</h2>
-    <div class="gallery">
-      <img src="photo1.jpg" alt="EthioHub photo 1" loading="lazy">
-      <img src="photo2.jpg" alt="EthioHub photo 2" loading="lazy">
-    </div>
-    <div class="actions">
-      <button onclick="likePost(this)">❤️ Like <span>0</span></button>
-      <button onclick="sharePage()">↗ Share</button>
-    </div>
-  </section>
-
   <section class="card" id="videos">
     <h2>🎬 Entertainment Videos</h2>
     <div class="video-note">🎥 More entertaining videos coming soon!</div>
@@ -221,32 +209,6 @@ function sharePage(){
   }
 }
 </script>
-
-</body>
-</html>
-
-
-    <!-- 3. የቪዲዮ ማጫወቻ ካርድ (ybnew.mp4) -->
-    <div class="video-card">
-        <h3 style="margin: 0 0 10px 0; color: #ffffff;">🔥 አዲስ ቪዲዮ (ybnew)</h3>
-        
-        <div class="video-container" onclick="checkVideoPayment()">
-            <video preload="metadata">
-                <source src="ybnew.mp4" type="video/mp4">
-                ብሮውዘርዎ ይህንን ቪዲዮ አይደግፍም።
-            </video>
-            <div class="play-btn">▶</div>
-        </div>
-
-        <p style="margin: 10px 0 0 0; color: #ccc; font-size: 15px; font-weight: bold;">Watch and enjoy on EthioHub!</p>
-    </div>
-
-    <!-- 4. የክፍያ መቆለፊያ ጃቫስክሪፕት -->
-    <script>
-        function checkVideoPayment() {
-            alert("ይህንን ቪዲዮ ለማየት እባክዎ በ Telebirr ወይም CBE Birr 99 ETB ይክፈሉ!");
-        }
-    </script>
 
 </body>
 </html>
