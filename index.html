@@ -358,4 +358,28 @@ function sendPaymentRequest() {
     '_blank'
   );
 }
+</script><!-- Selected Premium Plan -->
+<div id="selected-plan"
+     style="display:none;background:#e8f1ff;padding:15px;border-radius:12px;margin:12px 0">
+  <h3>👑 Your Selected Plan</h3>
+  <p id="plan-name"></p>
+  <h2 id="plan-price"></h2>
+  <p>Pay using Telebirr or Wegagen Bank.</p>
+</div>
+
+<script>
+function chooseEthioHubPlan(name, price) {
+  document.getElementById('plan-name').textContent = name;
+  document.getElementById('plan-price').textContent = price + ' ETB';
+  document.getElementById('selected-plan').style.display = 'block';
+
+  const payment = document.getElementById('premium-payment');
+  if (payment) {
+    payment.style.display = 'block';
+    payment.scrollIntoView({behavior:'smooth'});
+  } else {
+    document.getElementById('selected-plan')
+      .scrollIntoView({behavior:'smooth'});
+  }
+}
 </script>
