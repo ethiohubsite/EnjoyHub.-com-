@@ -209,6 +209,20 @@ function createPost(){
   <button id="btn-login" style="background-color: #ff0055; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">ይግቡ</button>
   <button id="btn-signup" style="background-color: #333; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px; margin-left: 5px;">ይመዝገቡ</button>
 </div>
+// ይዘቶችን ለይቶ ማሳያ ተግባር
+function filterContent(category) {
+  const items = document.querySelectorAll('.content-item'); // እያንዳንዱ ቪዲዮ/ፎቶ ያለበት ዲቭ (Div)
+  
+  items.forEach(item => {
+    if (category === 'all') {
+      item.style.display = 'block';
+    } else if (item.classList.contains(category)) {
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
 
 </body>
 </html>
