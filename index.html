@@ -12,28 +12,36 @@ body{margin:0;background:#f0f2f5;color:#202124;font-family:Arial,sans-serif}
 .wrap{max-width:760px;margin:auto;padding:14px}
 .profile{background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px #0001}
 
-/* የጀርባ ፎቶ (Cover) */
 .cover{
   height:190px;
   background:linear-gradient(135deg, rgba(16, 27, 59, 0.3), rgba(24, 119, 242, 0.3)), url('photo1.jpg');
   background-size:cover;
   background-position:center;
   cursor:pointer;
+  position: relative;
+}
+.cover::after {
+  content: "📷 የጀርባ ፎቶ ቀይር";
+  position: absolute; top: 10px; right: 10px;
+  background: rgba(0,0,0,0.6); color: white; padding: 4px 8px;
+  border-radius: 20px; font-size: 11px; font-weight: bold; opacity: 0.8;
 }
 
 .profile-info{padding:0 18px 20px}
 
-/* የክብ ፕሮፋይል ፎቶ */
+.avatar-wrapper {
+  width: 112px; height: 112px; margin-top: -55px; position: relative; display: inline-block;
+}
 .avatar{
-  width:112px;
-  height:112px;
-  border-radius:50%;
-  border:5px solid white;
-  object-fit:cover;
-  background:#ddd;
-  margin-top:-55px;
-  position:relative;
-  cursor:pointer;
+  width:100%; height:100%;
+  border-radius:50%; border:5px solid white;
+  object-fit:cover; background:#ddd; cursor:pointer;
+}
+.avatar-change-btn {
+  position: absolute; bottom: 5px; right: 5px;
+  background: #1877f2; color: white; width: 28px; height: 28px;
+  border-radius: 50%; border: 2px solid white; display: flex;
+  align-items: center; justify-content: center; font-size: 12px; cursor: pointer;
 }
 
 h1{font-size:25px;margin:8px 0}
@@ -51,31 +59,51 @@ button,.telegram{border:0;border-radius:8px;padding:10px 14px;background:#e7f0ff
 .telegram{background:#1877f2;color:white;margin-top:8px}
 footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
 @media(max-width:480px){.cover{height:150px}.gallery img{height:180px}}
+
+/* ያማረ የክፍያ ስክሪን ስታይል */
+.modal-overlay {
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+  background: rgba(0,0,0,0.7); z-index: 100; align-items: center; justify-content: center; padding: 20px;
+}
+.modal-content {
+  background: white; padding: 25px; border-radius: 16px; max-width: 380px; width: 100%; 
+  text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative;
+}
+.info-display-box {
+  background: #f7f9fa; border: 2px dashed #1877f2; padding: 12px; border-radius: 10px;
+  margin: 15px 0; display: none; text-align: center; animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
 
-<!-- 1. የላይኛው ባር -->
 <header class="topbar">
   <div class="brand">🌍 EthioHub</div>
 </header>
 
 <main class="wrap">
 
-  <!-- 2. አረንጓዴ እና ነጭ የዌልካም ባነር (ከሰማያዊው ፕሮፋይል በላይ ተቀምጧል) -->
+  <!-- የተደበቁ የፋይል መጫኛዎች (ለፎቶ መቀየር) -->
+  <input type="file" id="coverInput" accept="image/*" style="display:none" onchange="changeCoverImage(this)">
+  <input type="file" id="avatarInput" accept="image/*" style="display:none" onchange="changeAvatarImage(this)">
+
+  <!-- አረንጓዴ እና ነጭ የዌልካም ባነር -->
   <div style="background: linear-gradient(135deg, #11998e, #38ef7d); border-radius: 20px; margin: 15px auto; padding: 30px 20px; text-align: center; width: 100%; box-shadow: 0 8px 25px rgba(56, 239, 125, 0.2); box-sizing: border-box;">
       <h1 style="font-size: 26px; font-weight: bold; margin: 0 0 10px 0; color: #ffffff;">Welcome to EthioHub ✨</h1>
       <p style="font-size: 15px; color: #ffffff; line-height: 1.6; margin: 0 0 20px 0;">የኢትዮጵያን ምርጥ ቪዲዮዎች፣ ፎቶዎች እና አዝናኝ ይዘቶች በአንድ ቦታ ያግኙ!</p>
       <button style="background-color: #ffffff; color: #11998e; border: none; padding: 12px 25px; border-radius: 25px; font-size: 15px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.15);" onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'})">ይዘቶችን ይመልከቱ 🚀</button>
   </div>
 
-  <!-- 3. የሰማያዊ/ሐምራዊ ፕሮፋይል ክፍል ከነፕሪሚየም ባጁ -->
+  <!-- የፕሮፋይል ክፍል -->
   <section class="profile">
-    <div class="cover" onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'})"></div>
+    <div class="cover" id="profileCover" onclick="document.getElementById('coverInput').click()"></div>
     <div class="profile-info">
-      <img class="avatar" src="photo2.jpg" alt="EthioHub profile photo" onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'})">
+      <div class="avatar-wrapper">
+        <img class="avatar" id="profileAvatar" src="photo2.jpg" alt="EthioHub profile photo" onclick="document.getElementById('avatarInput').click()">
+        <div class="avatar-change-btn" onclick="document.getElementById('avatarInput').click()">📷</div>
+      </div>
       
-      <!-- ስም እና ፕሪሚየም ባጅ በአንድ ላይ -->
       <div style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
         <h1 style="font-size: 25px; margin: 0;">EthioHub</h1>
         <span style="background: linear-gradient(135deg, #ff9100, #ff0055); color: white; font-size: 11px; font-weight: bold; padding: 4px 8px; border-radius: 20px; box-shadow: 0 2px 5px rgba(255,0,85,0.2);">
@@ -93,7 +121,7 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
     </div>
   </section>
 
-  <!-- 4. የድሮው ዌልካም ካርድ -->
+  <!-- Welcome ካርድ -->
   <section class="card" id="feed">
     <h2>✨ Welcome to EthioHub</h2>
     <p>Enjoy entertaining content, discover great photos, and stay tuned for more.</p>
@@ -103,7 +131,7 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
     </div>
   </section>
 
-  <!-- 5. የፎቶ ጋለሪ ክፍል -->
+  <!-- ፎቶ ጋለሪ -->
   <section class="card" id="photos">
     <h2>📸 Photos</h2>
     <div class="gallery">
@@ -116,11 +144,10 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
     </div>
   </section>
 
-  <!-- 6. ቪዲዮ እና የክፍያ መቆለፊያ (ybnew.mp4) -->
+  <!-- ቪዲዮ ጋለሪ (ybnew.mp4) -->
   <section class="card" id="videos">
     <h2>🎬 Entertainment Videos</h2>
     
-    <!-- ቪዲዮ ማጫወቻ ሳጥን -->
     <div onclick="openPaymentBox()" style="position: relative; background-color: #000; border-radius: 9px; overflow: hidden; height: 200px; display: flex; align-items: center; justify-content: center; cursor: pointer; margin-bottom: 15px;">
         <video style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
             <source src="ybnew.mp4" type="video/mp4">
@@ -137,22 +164,25 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
       </a>
     </div>
 
-    <!-- የክፍያ ሳጥን (Pop-up Payment Box) -->
-    <div id="paymentModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 100; align-items: center; justify-content: center; padding: 20px;">
-        <div style="background-color: white; padding: 25px; border-radius: 14px; max-width: 360px; width: 100%; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.3); position: relative;">
-            <span onclick="closePaymentBox()" style="position: absolute; top: 10px; right: 15px; font-size: 22px; color: #aaa; cursor: pointer; font-weight: bold;">&times;</span>
+    <!-- ያማረ የክፍያ ሳጥን (Pop-up Payment Box) -->
+    <div id="paymentModal" class="modal-overlay">
+        <div class="modal-content">
+            <span onclick="closePaymentBox()" style="position: absolute; top: 10px; right: 15px; font-size: 24px; color: #aaa; cursor: pointer; font-weight: bold;">&times;</span>
             <h3 style="margin: 0 0 10px; color: #202124;">EthioHub Premium 🚀</h3>
-            <p style="color: #65676b; font-size: 14px; margin-bottom: 20px;">ይህንን ቪዲዮ ለማየት እባክዎ መጀመሪያ <b>99 ETB</b> ይክፈሉ!</p>
+            <p style="color: #65676b; font-size: 14px; margin-bottom: 15px;">ይህንን ቪዲዮ ለማየት እባክዎ መጀመሪያ <b>99 ETB</b> ይክፈሉ!</p>
             
-            <button onclick="alert('በቴሌብር 99 ETB መክፈያ ስልክ ቁጥር፦ 0927487505')" style="width: 100%; background-color: #0056b3; color: white; border: 0; border-radius: 9px; padding: 12px; font-weight: bold; margin-bottom: 10px; cursor: pointer;">በ Telebirr ክፈል</button>
-            <button onclick="alert('የወጋገን ባንክ አካውንት ቁጥር፦ 1157193230101')" style="width: 100%; background-color: #f7931a; color: white; border: 0; border-radius: 9px; padding: 12px; font-weight: bold; margin-bottom: 15px; cursor: pointer;">በወጋገን ባንክ (Wegagen) ክፈል</button>
+            <!-- ቁጥር ማሳያ ሳጥን -->
+            <div id="infoDisplayBox" class="info-display-box"></div>
+
+            <button onclick="showInfo('telebirr')" style="width: 100%; background-color: #0056b3; color: white; border: 0; border-radius: 9px; padding: 12px; font-weight: bold; margin-bottom: 10px; cursor: pointer;">በ Telebirr ክፈል</button>
+            <button onclick="showInfo('wegagen')" style="width: 100%; background-color: #f7931a; color: white; border: 0; border-radius: 9px; padding: 12px; font-weight: bold; margin-bottom: 15px; cursor: pointer;">በወጋገን ባንክ (Wegagen) ክፈል</button>
             
-            <p style="font-size: 12px; color: #999; margin: 0;">ክፍያዎን እንደጨረሱ ቪዲዮው በራስ-ሰር ይከፈታል።</p>
+            <p style="font-size: 11px; color: #999; margin: 0;">ቁጥሩን ተጠቅመው ከከፈሉ በኋላ ለይዘት አቅራቢው ያሳውቁ።</p>
         </div>
     </div>
   </section>
 
-  <!-- 7. የቴሌግራም መቀላቀያ ሳጥን -->
+  <!-- ቴሌግራም መቀላቀያ ሳጥን -->
   <section class="card telegram-box">
     <h2>✈️ Join EthioHub on Telegram</h2>
     <p>Watch videos and stay connected with our community.</p>
@@ -161,38 +191,7 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
     </a>
   </section>
 
-  <!-- 8. የቲክቶክ እና ዩቲዩብ ማገናኛ በተኖች -->
+  <!-- ሶሻል ሚዲያ በተኖች -->
   <div style="background: white; border-radius: 14px; padding: 20px; margin-top: 16px; box-shadow: 0 2px 8px #0001; text-align: center;">
       <h2 style="font-size: 19px; margin: 0 0 15px; color: #202124;">📱 በሶሻል ሚዲያ ይከተሉን</h2>
       <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-          <a href="https://tiktok.com" target="_blank" rel="noopener" style="background: #000000; color: white; border-radius: 9px; padding: 12px 20px; font-weight: bold; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">🎵 TikTok</a>
-          <a href="https://youtube.com" target="_blank" rel="noopener" style="background: #ff0000; color: white; border-radius: 9px; padding: 12px 20px; font-weight: bold; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 6px rgba(255,0,0,0.1);">▶ YouTube</a>
-      </div>
-  </div>
-
-</main>
-
-<footer>© 2026 EthioHub · Entertainment & Photos</footer>
-
-<script>
-function openPaymentBox() {
-    document.getElementById('paymentModal').style.display = 'flex';
-}
-function closePaymentBox() {
-    document.getElementById('paymentModal').style.display = 'none';
-}
-function likePost(button){
-  const count=button.querySelector("span");
-  count.textContent=Number(count.textContent)+1;
-}
-function sharePage(){
-  if(navigator.share){
-    navigator.share({title:"EthioHub",url:location.href}).catch(()=>{});
-  }else{
-    prompt("Copy the EthioHub link:",location.href);
-  }
-}
-</script>
-
-</body>
-</html>
