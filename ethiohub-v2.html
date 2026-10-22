@@ -292,6 +292,18 @@ function createPost(){
 </div>
 
 </html>
+<script>
+function checkPayment() {
+    // ተጠቃሚው ከፍሏል ወይስ አልከፈለም የሚለውን ለመለየት (ለጊዜው false እናድርገው)
+    let isPremium = false; 
+
+    if (!isPremium) {
+        alert("ይህንን ቪዲዮ ለማየት እባክዎ መጀመሪያ ይክፈሉ!");
+        // ወደ ክፍያ ገጽ (payment.html) ይወስደዋል
+        window.location.href = "payment.html"; 
+    }
+}
+</script>
 
 </body>
 </html>
