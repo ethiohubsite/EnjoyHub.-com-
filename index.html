@@ -8,47 +8,51 @@
 *{box-sizing:border-box;scroll-behavior:smooth}
 body{margin:0;background:#f0f2f5;color:#202124;font-family:Arial,sans-serif}
 .topbar{background:#fff;padding:14px 18px;position:sticky;top:0;z-index:5;box-shadow:0 2px 6px #0001}
-.brand{font-size:25px;font-weight:800;color:#16864a}
+.brand{font-size:25px;font-weight:800;color:#1877f2}
 .wrap{max-width:760px;margin:auto;padding:14px}
-
-/* የባነር ፎቶ እና የአረንጓዴ ቀለም ቅልቅል */
-.welcome{
-  background: linear-gradient(rgba(21, 148, 71, 0.8), rgba(21, 148, 71, 0.8)), url('photo1.jpg');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  padding: 35px 20px;
-  border-radius: 14px;
-  margin-bottom: 15px;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-.welcome:active {
-  transform: scale(0.98);
-}
+.welcome{background:#159447;color:white;padding:27px 20px;border-radius:14px;margin-bottom:15px;text-align:center}
 .welcome h1{margin:0 0 10px;font-size:29px}
 .welcome p{margin:0;line-height:1.6}
-
 .profile{background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px #0001}
-.cover{height:145px;background:linear-gradient(135deg,#087b3a,#20b65b,#075b35)}
-.profile-info{padding:0 18px 18px}
-.avatar{width:100px;height:100px;border-radius:50%;border:5px solid white;object-fit:cover;background:#ddd;margin-top:-48px;position:relative}
-h2{font-size:20px;margin:0 0 13px}
+
+/* የጀርባ ፎቶ (Cover) ቦታ ላይ photo1.jpg ገብቷል */
+.cover{
+  height:190px;
+  background:url('photo1.jpg');
+  background-size:cover;
+  background-position:center;
+  cursor:pointer;
+}
+
+.profile-info{padding:0 18px 20px}
+
+/* በትንሿ ክብ ምስል ላይ photo2.jpg ገብቷል */
+.avatar{
+  width:112px;
+  height:112px;
+  border-radius:50%;
+  border:5px solid white;
+  object-fit:cover;
+  background:#ddd;
+  margin-top:-55px;
+  position:relative;
+  cursor:pointer;
+}
+
+h1{font-size:25px;margin:8px 0}
 .muted{color:#65676b;font-size:14px}
-.tabs{display:flex;gap:8px;justify-content:space-around;border-top:1px solid #eee;padding-top:15px;margin-top:16px;flex-wrap:wrap}
-.tabs a{color:#16864a;text-decoration:none;font-weight:bold;padding:8px}
-.tabs a:active{background:#e4f6e9}
+.tabs{display:flex;gap:24px;border-top:1px solid #eee;padding-top:15px;margin-top:16px}
+.tabs a{color:#1877f2;text-decoration:none;font-weight:bold}
 .card{background:white;border-radius:14px;padding:16px;margin-top:16px;box-shadow:0 2px 8px #0001;scroll-margin-top:80px}
 .gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .gallery img{width:100%;height:230px;object-fit:cover;border-radius:9px;display:block}
 .actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
-button,.telegram{border:0;border-radius:9px;padding:11px 14px;background:#e7f5eb;color:#16864a;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
-.video-note{background:#f5f7f6;padding:22px;text-align:center;border-radius:10px;color:#555;line-height:1.7}
-.telegram-box{background:#e9f8ef;text-align:center}
-.telegram{background:#168bca;color:white;margin-top:8px}
+button,.telegram{border:0;border-radius:8px;padding:10px 14px;background:#e7f0ff;color:#1877f2;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
+.video-note{text-align:center;padding:22px;background:#f7f8fa;border-radius:10px;color:#65676b}
+.telegram-box{background:#e7f0ff;text-align:center}
+.telegram{background:#1877f2;color:white;margin-top:8px}
 footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
-@media(max-width:480px){.cover{height:125px}.gallery img{height:180px}.welcome h1{font-size:25px}}
+@media(max-width:480px){.cover{height:150px}.gallery img{height:180px}}
 </style>
 </head>
 <body>
@@ -57,32 +61,28 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
   <div class="brand">🌍 EthioHub</div>
 </header>
 
-<main class="wrap" id="home">
-
-  <!-- ሲነካ በቀጥታ ወደ ቪዲዮ ክፍል (#videos) የሚወስደው አዲሱ ባነር -->
-  <section class="welcome" onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'})">
-    <h1>Welcome to EthioHub! 🌍</h1>
-    <p>Your world of entertainment.<br>
-    Discover videos, enjoy photos, and share the fun!</p>
-  </section>
+<main class="wrap">
 
   <section class="profile">
-    <div class="cover"></div>
+    <!-- ሲነካ ወደ ቪዲዮ ክፍል የሚወስድ ትልቁ የጀርባ ፎቶ -->
+    <div class="cover" onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'})"></div>
     <div class="profile-info">
-      <img class="avatar" src="photo1.jpg" alt="EthioHub profile photo">
-      <h2>EthioHub</h2>
-      <div class="muted">🎬 Entertainment · 📸 Photos · ▶ Videos</div>
+      <!-- ሲነካ ወደ ቪዲዮ ክፍል የሚወስድ ትንሿ ክብ ምስል -->
+      <img class="avatar" src="photo2.jpg" alt="EthioHub profile photo" onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'})">
+      <h1>EthioHub</h1>
+      <div class="muted">🎬 Entertainment · 📸 Photos</div>
+      <p>Discover and enjoy amazing content on EthioHub!</p>
       <div class="tabs">
-        <a href="#home">🏠 For You</a>
-        <a href="#photos">📸 Photos</a>
-        <a href="#videos">🎬 Videos</a>
+        <a href="#feed">For You</a>
+        <a href="#photos">Photos</a>
+        <a href="#videos">Videos</a>
       </div>
     </div>
   </section>
 
-  <section class="card">
-    <h2>✨ Welcome to Our Community</h2>
-    <p>Enjoy entertaining content, discover great photos, and stay connected with EthioHub.</p>
+  <section class="card" id="feed">
+    <h2>✨ Welcome to EthioHub</h2>
+    <p>Enjoy entertaining content, discover great photos, and stay tuned for more.</p>
     <div class="actions">
       <button onclick="likePost(this)">❤️ Like <span>0</span></button>
       <button onclick="sharePage()">↗ Share</button>
@@ -90,7 +90,7 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
   </section>
 
   <section class="card" id="photos">
-    <h2>📸 Photo Gallery</h2>
+    <h2>📸 Photos</h2>
     <div class="gallery">
       <img src="photo1.jpg" alt="EthioHub photo 1" loading="lazy">
       <img src="photo2.jpg" alt="EthioHub photo 2" loading="lazy">
@@ -102,23 +102,15 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
   </section>
 
   <section class="card" id="videos">
-    <h2>🎬 Video Gallery</h2>
+    <h2>🎬 Entertainment Videos</h2>
     <div class="video-note">
-      🎥 More entertaining videos are coming soon!<br>
+      🎥 More entertaining videos coming soon!<br>
       Visit our Telegram channel to watch videos.
       <br>
       <a class="telegram" href="https://t.me" target="_blank" rel="noopener">
         ▶ Watch Videos on Telegram
       </a>
     </div>
-  </section>
-
-  <section class="card telegram-box">
-    <h2>✈️ Join EthioHub on Telegram</h2>
-    <p>Watch videos and stay connected with our community.</p>
-    <a class="telegram" href="https://t.me" target="_blank" rel="noopener">
-      Join Telegram Channel
-    </a>
   </section>
 
 </main>
