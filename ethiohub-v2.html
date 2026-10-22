@@ -223,6 +223,84 @@ function filterContent(category) {
     }
   });
 }
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EthioHub</title>
+    <style>
+        /* ያንተ ዋና የድረ-ገጽ ስታይል */
+        body { background-color: #0b0c10; color: white; font-family: sans-serif; margin: 0; padding: 10px; }
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 10px; }
+        .logo { color: #ff0055; font-size: 24px; font-weight: bold; }
+        .nav-buttons { display: flex; gap: 10px; justify-content: center; margin: 20px 0; }
+        .btn { background-color: #1f2833; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; }
+        .btn.active { background-color: #ff0055; }
+        .content-section { display: flex; flex-direction: column; gap: 20px; align-items: center; margin-top: 20px; }
+        .content-item { background-color: #1f2833; border-radius: 10px; padding: 15px; width: 90%; max-width: 400px; }
+        .media-box { background-color: #000; width: 100%; height: 250px; display: flex; justify-content: center; align-items: center; border-radius: 5px; color: #666; }
+        .title { margin-top: 10px; font-size: 18px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <!-- 1. ሄደር -->
+    <div class="header">
+        <div class="logo">EthioHub 🎬</div>
+        <div style="color: #45f3ff; font-size: 14px;">Join Telegram ↗</div>
+    </div>
+
+    <!-- 2. የማጣሪያ በተኖች -->
+    <div class="nav-buttons">
+        <button class="btn active" onclick="filterContent('all', this)">For You</button>
+        <button class="btn" onclick="filterContent('video', this)">Videos</button>
+        <button class="btn" onclick="filterContent('photo', this)">Photos</button>
+    </div>
+
+    <!-- 3. የቪዲዮ እና ፎቶ ማሳያ ቦታ -->
+    <div class="content-section">
+        
+        <!-- የቪዲዮ ምሳሌ -->
+        <div class="content-item video">
+            <div class="media-box">▶ ቪዲዮ (Jordan 12)</div>
+            <div class="title">🔥 Jordan 12</div>
+        </div>
+
+        <!-- የፎቶ ምሳሌ -->
+        <div class="content-item photo">
+            <div class="media-box">📷 ፎቶ (Jordan 12)</div>
+            <div class="title">✨ Jordan 12 Photo</div>
+        </div>
+
+    </div>
+
+    <!-- 4. የቪዲዮ/ፎቶ ማጣሪያ ጃቫስክሪፕት (ፍጹም ትክክለኛ ኮድ) -->
+    <script>
+        function filterContent(category, button) {
+            // ሁሉንም በተኖች አክቲቭነታቸውን አጥፋ
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // አሁን የተጫነውን በተን ብቻ አብራው (ቀይ አድርገው)
+            button.classList.add('active');
+
+            // ይዘቶችን አጣራ
+            const items = document.querySelectorAll('.content-item');
+            items.forEach(item => {
+                if (category === 'all') {
+                    item.style.display = 'block';
+                } else if (item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
 
 </body>
 </html>
