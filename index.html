@@ -148,15 +148,15 @@ function sharePage(){
   }
 }
 </script><!-- የቪዲዮ ጋለሪ እና የክፍያ መቆለፊያ ክፍል -->
+<div style="<!-- የቪዲዮ ጋለሪ እና የክፍያ መቆለፊያ ክፍል ከነአካውንት ቁጥሩ -->
 <div style="background-color: white; border-radius: 14px; padding: 16px; margin-top: 16px; box-shadow: 0 2px 8px #0001; font-family: Arial, sans-serif;">
     <h2 style="font-size: 19px; margin: 0 0 12px; color: #202124;">🎬 Entertainment Videos</h2>
     
-    <!-- ቪዲዮ ማጫወቻ ሳጥን (ሲነካ የክፍያ አማራጮችን ይከፍታል) -->
+    <!-- ቪዲዮ ማጫወቻ ሳጥን -->
     <div onclick="openPaymentBox()" style="position: relative; background-color: #000; border-radius: 9px; overflow: hidden; height: 200px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
         <video style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
             <source src="ybnew.mp4" type="video/mp4">
         </video>
-        <!-- የፕሌይ ምልክት -->
         <div style="position: absolute; background-color: rgba(22, 119, 242, 0.9); width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">▶</div>
     </div>
     <p style="margin: 10px 0 0; color: #65676b; font-size: 14px;">Watch and enjoy Jordan 12 on EthioHub!</p>
@@ -169,15 +169,15 @@ function sharePage(){
             <p style="color: #65676b; font-size: 14px; margin-bottom: 20px;">ይህንን ቪዲዮ ለማየት እባክዎ መጀመሪያ <b>99 ETB</b> ይክፈሉ!</p>
             
             <!-- የክፍያ በተኖች -->
-            <button onclick="alert('ወደ Telebirr ክፍያ በመውሰድ ላይ...')" style="width: 100%; background-color: #0056b3; color: white; border: 0; border-radius: 9px; padding: 12px; font-weight: bold; margin-bottom: 10px; cursor: pointer;">በ Telebirr ክፈል</button>
-            <button onclick="alert('ወደ ወጋገን ባንክ ክፍያ በመውሰድ ላይ...')" style="width: 100%; background-color: #f7931a; color: white; border: 0; border-radius: 9px; padding: 12px; font-weight: bold; margin-bottom: 15px; cursor: pointer;">በወጋገን ባንክ (Wegagen) ክፈል</button>
+            <button onclick="alert('በቴሌብር 99 ETB መክፈያ ስልክ ቁጥር፦ 0927487505')" style="width: 100%; background-color: #0056b3; color: white; border: 0; border-radius: 9px; padding: 12px; font-weight: bold; margin-bottom: 10px; cursor: pointer;">በ Telebirr ክፈል</button>
+            <button onclick="alert('የወጋገን ባንክ አካውንት ቁጥር፦ 1157193230101')" style="width: 100%; background-color: #f7931a; color: white; border: 0; border-radius: 9px; padding: 12px; font-weight: bold; margin-bottom: 15px; cursor: pointer;">በወጋገን ባንክ (Wegagen) ክፈል</button>
             
             <p style="font-size: 12px; color: #999; margin: 0;">ክፍያዎን እንደጨረሱ ቪዲዮው በራስ-ሰር ይከፈታል።</p>
         </div>
     </div>
 </div>
 
-<!-- የክፍያ ሳጥኑን መቆጣጠሪያ ጃቫስክሪፕት -->
+<!-- ጃቫስክሪፕት መቆጣጠሪያ -->
 <script>
 function openPaymentBox() {
     document.getElementById('paymentModal').style.display = 'flex';
@@ -186,7 +186,3 @@ function closePaymentBox() {
     document.getElementById('paymentModal').style.display = 'none';
 }
 </script>
-
-
-</body>
-</html>
