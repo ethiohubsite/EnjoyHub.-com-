@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EthioHub | Entertainment</title>
 <style>
-*{box-sizing:border-box}
+*{box-sizing:border-box;scroll-behavior:smooth}
 body{margin:0;background:#f0f2f5;color:#202124;font-family:Arial,sans-serif}
 .topbar{background:#fff;padding:15px 18px;position:sticky;top:0;z-index:5;box-shadow:0 1px 5px #0001}
 .brand{font-size:25px;font-weight:800;color:#1877f2}
 .wrap{max-width:760px;margin:auto;padding:14px}
 .profile{background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px #0001}
 
-/* የድሮው ሰማያዊ/ሐምራዊ መደብ ላይ photo1.jpg ፎቶ ብቻ እንዲገባ ተደረገ */
+/* በትልቁ የጀርባ ፎቶ (Cover) ላይ photo1.jpg ገብቷል፤ የድሮው ሰማያዊ ቀለምም አብሮ አለ */
 .cover{
   height:190px;
   background:linear-gradient(135deg, rgba(16, 27, 59, 0.4), rgba(24, 119, 242, 0.4)), url('photo1.jpg');
@@ -23,7 +23,7 @@ body{margin:0;background:#f0f2f5;color:#202124;font-family:Arial,sans-serif}
 
 .profile-info{padding:0 18px 20px}
 
-/* በትንሿ ክብ ምስል ላይ photo2.jpg ፎቶ ገባ */
+/* በትንሿ ክብ ምስል (Avatar) ላይ photo2.jpg ገብቷል */
 .avatar{
   width:112px;
   height:112px;
@@ -40,7 +40,7 @@ h1{font-size:25px;margin:8px 0}
 .muted{color:#65676b;font-size:14px}
 .tabs{display:flex;gap:24px;border-top:1px solid #eee;padding-top:15px;margin-top:16px}
 .tabs a{color:#1877f2;text-decoration:none;font-weight:bold}
-.card{background:white;border-radius:14px;padding:16px;margin-top:16px;box-shadow:0 2px 8px #0001}
+.card{background:white;border-radius:14px;padding:16px;margin-top:16px;box-shadow:0 2px 8px #0001;scroll-margin-top:80px}
 h2{font-size:19px;margin:0 0 12px}
 .gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .gallery img{width:100%;height:230px;object-fit:cover;border-radius:9px;display:block}
@@ -60,10 +60,10 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
 <main class="wrap">
 
   <section class="profile">
-    <!-- ሲነካ በቀጥታ ወደ ቪዲዮዎች የሚወስድ የጀርባ ፎቶ -->
+    <!-- ሲነካ ወደ ቪዲዮዎች የሚወስድ ትልቁ የጀርባ ፎቶ -->
     <div class="cover" onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'})"></div>
     <div class="profile-info">
-      <!-- ሲነካ በቀጥታ ወደ ቪዲዮዎች የሚወስድ የፕሮፋይል ፎቶ -->
+      <!-- ሲነካ ወደ ቪዲዮዎች የሚወስድ ትንሿ ክብ ምስል -->
       <img class="avatar" src="photo2.jpg" alt="EthioHub profile photo" onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'})">
       <h1>EthioHub</h1>
       <div class="muted">🎬 Entertainment · 📸 Photos</div>
@@ -76,6 +76,7 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
     </div>
   </section>
 
+  <!-- አንተ የፈለግከው "Welcome to EthioHub" ካርድ በትክክል እዚህ አለ -->
   <section class="card" id="feed">
     <h2>✨ Welcome to EthioHub</h2>
     <p>Enjoy entertaining content, discover great photos, and stay tuned for more.</p>
