@@ -420,4 +420,60 @@ function chooseEthioHubPlan(name, price) {
       .scrollIntoView({behavior:'smooth'});
   }
 }
+</script><!-- Firebase SDK እና የዳታቤዝ ማገናኛ ኮድ -->
+<script type="module">
+  import { initializeApp } from "https://gstatic.com";
+  import { getFirestore, collection, addDoc } from "https://gstatic.com";
+
+  // የእርስዎ የFirebase ማዋቀሪያ መረጃ
+  const firebaseConfig = {
+    apiKey: "AIzaSyDrQPz1glm8_3zLj-oW6x9Jtw0718Xs0r8",
+    authDomain: "://firebaseapp.com",
+    projectId: "ethiohub-887b8",
+    storageBucket: "ethiohub-887b8.firebasestorage.app",
+    messagingSenderId: "1019295583935",
+    appId: "1:1019295583935:web:e6657086448bc0eb6e400a",
+    measurementId: "G-KM7E9JTEXV"
+  };
+
+  // Firebaseን መጀመር
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // የክፍያ መረጃውን ቀጥታ ወደ Firestore ዳታቤዝ የሚልክ አዲስ ተግባር
+  window.submitHubPayment = async function() {
+    const ref = document.getElementById("payment-reference").value.trim();
+    const name = document.getElementById("payment-name").value.trim();
+    const message = document.getElementById("payment-message");
+
+    if (!ref || !name) {
+      message.style.color = "red";
+      message.textContent = "እባክዎ ስምዎንና የክፍያ ማረጋገጫ ቁጥር (Transaction ID) ያስገቡ።";
+      return;
+    }
+
+    try {
+      message.style.color = "#1877f2";
+      message.textContent = "መረጃው እየተላከ ነው... እባክዎ ይጠብቁ።";
+
+      // ወደ 'payments' ፎልደር መረጃ ማስገባት
+      await addDoc(collection(db, "payments"), {
+        username: name,
+        transactionId: ref,
+        date: new Date().toISOString()
+      });
+
+      message.style.color = "green";
+      message.textContent = "የክፍያ ዝርዝርዎ በስኬት ተልኳል! በአስተዳዳሪው ተረጋግጦ ይከፈታል።";
+      
+      // ሳጥኖቹን ባዶ ማድረግ
+      document.getElementById("payment-reference").value = "";
+      document.getElementById("payment-name").value = "";
+    } catch (error) {
+      console.error("ስህተት ተፈጥሯል: ", error);
+      message.style.color = "red";
+      message.textContent = "የመረብ መቆራረጥ አጋጥሟል፣ እባክዎ ድጋሚ ይሞክሩ።";
+    }
+  }
 </script>
+
