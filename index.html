@@ -311,26 +311,7 @@ function submitHubPayment() {
     "Details entered. Payment must be verified by the administrator before Premium access is granted.";
 }
 </script>
-<div style="background:#e7f0ff;padding:16px;border-radius:12px;margin:15px 0">
-  <h3>✅ Already Paid?</h3>
-  <p>ክፍያ ከፍለዋል? የክፍያ ዝርዝርዎን ይላኩልን።</p>
-
-  <label for="customer-name">Your Name</label>
-  <input id="customer-name" type="text"
-    placeholder="Enter your name"
-    style="width:100%;padding:12px;margin:8px 0">
-
-  <label for="transaction-id">Transaction ID</label>
-  <input id="transaction-id" type="text"
-    placeholder="Enter payment reference"
-    style="width:100%;padding:12px;margin:8px 0">
-
-  <button onclick="sendPaymentRequest()"
-    style="width:100%;background:#1877f2;color:white;margin-top:8px">
-    📩 Submit Payment Details
-  </button>
-
-  <p id="request-status"></p>
+  
 </div>
 <!-- EthioHub Premium Plan -->
 <div class="card">
