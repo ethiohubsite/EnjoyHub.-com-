@@ -1,596 +1,169 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>EthioHub | Entertainment</title>
-<style>
-*{box-sizing:border-box;scroll-behavior:smooth}
-body{margin:0;background:#f0f2f5;color:#202124;font-family:Arial,sans-serif}
-.topbar{background:#fff;padding:15px 18px;position:sticky;top:0;z-index:5;box-shadow:0 1px 5px #0001}
-.brand{font-size:25px;font-weight:800;color:#1877f2}
-.wrap{max-width:760px;margin:auto;padding:14px}
-.profile{background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px #0001}
-
-.cover{
-  height:190px;
-  background:linear-gradient(135deg, rgba(16, 27, 59, 0.3), rgba(24, 119, 242, 0.3)), url('photo1.jpg');
-  background-size:cover;
-  background-position:center;
-  cursor:pointer;
-  position: relative;
-}
-.cover::after {
-  content: "📷 የጀርባ ፎቶ ቀይር";
-  position: absolute; top: 10px; right: 10px;
-  background: rgba(0,0,0,0.6); color: white; padding: 4px 8px;
-  border-radius: 20px; font-size: 11px; font-weight: bold; opacity: 0.8;
-}
-
-.profile-info{padding:0 18px 20px}
-
-.avatar-wrapper {
-  width: 112px; height: 112px; margin-top: -55px; position: relative; display: inline-block;
-}
-.avatar{
-  width:100%; height:100%;
-  border-radius:50%; border:5px solid white;
-  object-fit:cover; background:#ddd; cursor:pointer;
-}
-.avatar-change-btn {
-  position: absolute; bottom: 5px; right: 5px;
-  background: #1877f2; color: white; width: 28px; height: 28px;
-  border-radius: 50%; border: 2px solid white; display: flex;
-  align-items: center; justify-content: center; font-size: 12px; cursor: pointer;
-}
-
-h1{font-size:25px;margin:8px 0}
-.muted{color:#65676b;font-size:14px}
-.tabs{display:flex;gap:24px;border-top:1px solid #eee;padding-top:15px;margin-top:16px}
-.tabs a{color:#1877f2;text-decoration:none;font-weight:bold}
-.card{background:white;border-radius:14px;padding:16px;margin-top:16px;box-shadow:0 2px 8px #0001;scroll-margin-top:80px}
-h2{font-size:19px;margin:0 0 12px}
-.gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.gallery img{width:100%;height:230px;object-fit:cover;border-radius:9px;display:block}
-.actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
-button,.telegram-btn{border:0;border-radius:8px;padding:10px 14px;background:#e7f0ff;color:#1877f2;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
-.video-note{text-align:center;padding:22px;background:#f7f8fa;border-radius:10px;color:#65676b}
-.telegram-box{background:#e7f0ff;text-align:center}
-.telegram-btn.global-style{background:#1877f2;color:white;margin-top:8px}
-footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
-@media(max-width:480px){.cover{height:150px}.gallery img{height:180px}}
-
-/* ያማረ የክፍያ ስክሪን ስታይል */
-.modal-overlay {
-  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-  background: rgba(0,0,0,0.7); z-index: 100; align-items: center; justify-content: center; padding: 20px;
-}
-.modal-content {
-  background: white; padding: 25px; border-radius: 16px; max-width: 380px; width: 100%; 
-  text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative;
-}
-.info-display-box {
-  background: #f7f9fa; border: 2px dashed #1877f2; padding: 12px; border-radius: 10px;
-  margin: 15px 0; display: none; text-align: center; animation: fadeIn 0.3s ease;
-}
-@keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
-</style>
+  <meta name="google-site-verification" content="uBPNB7Me0Bx1UPiVEfyabcBVr1GlrexQWqvLSGBpLGs" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EthioHub | Entertainment</title>
+  <style>
+    *{box-sizing:border-box;scroll-behavior:smooth}
+    body{margin:0;background:#f0f2f5;color:#202124;font-family:Arial,sans-serif}
+    .topbar{background:#fff;padding:15px 18px;position:sticky;top:0;z-index:5;box-shadow:0 1px 5px #0001}
+    .brand{font-size:25px;font-weight:800;color:#1877f2}
+    .wrap{max-width:760px;margin:auto;padding:14px}
+    .profile{background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px #0001}
+    
+    .cover{ 
+      height:190px; 
+      background:linear-gradient(135deg, rgba(16, 27, 59, 0.3), rgba(24, 119, 242, 0.3)), url('photo1.jpg'); 
+      background-size:cover; 
+      background-position:center; 
+      cursor:pointer; 
+      position: relative;
+    }
+    .cover::after { 
+      content: "📷 የጀርባ ፎቶ ቀይር"; 
+      position: absolute; top: 10px; right: 10px; 
+      background: rgba(0,0,0,0.6); color: white; padding: 4px 8px; 
+      border-radius: 20px; font-size: 11px; font-weight: bold; opacity: 0.8;
+    }
+    .profile-info{padding:0 18px 20px}
+    .avatar-wrapper { width: 112px; height: 112px; margin-top: -55px; position: relative; display: inline-block;}
+    .avatar{ width:100%; height:100%; border-radius:50%; border:5px solid white; object-fit:cover; background:#ddd; cursor:pointer;}
+    .avatar-change-btn { 
+      position: absolute; bottom: 5px; right: 5px; 
+      background: #1877f2; color: white; width: 28px; height: 28px; 
+      border-radius: 50%; border: 2px solid white; display: flex; 
+      align-items: center; justify-content: center; font-size: 12px; cursor: pointer;
+    }
+    h1{font-size:25px;margin:8px 0}
+    .muted{color:#65676b;font-size:14px}
+    .tabs{display:flex;gap:24px;border-top:1px solid #eee;padding-top:15px;margin-top:16px}
+    .tabs a{color:#1877f2;text-decoration:none;font-weight:bold}
+    .card{background:white;border-radius:14px;padding:16px;margin-top:16px;box-shadow:0 2px 8px #0001;scroll-margin-top:80px}
+    h2{font-size:19px;margin:0 0 12px}
+    .gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .gallery img{width:100%;height:230px;object-fit:cover;border-radius:9px;display:block}
+    .actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    button,.telegram-btn{border:0;border-radius:8px;padding:10px 14px;background:#e7f0ff;color:#1877f2;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
+    .video-note{text-align:center;padding:22px;background:#f7f8fa;border-radius:10px;color:#65676b}
+    .telegram-box{background:#e7f0ff;text-align:center}
+    .telegram-btn.global-style{background:#1877f2;color:white;margin-top:8px}
+    footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
+    @media(max-width:480px){.cover{height:150px}.gallery img{height:180px}}
+    
+    /* ያማረ የክፍያ ስክሪን ስታይል */
+    .modal-overlay { 
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+      background: rgba(0,0,0,0.7); z-index: 100; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-content { 
+      background: white; padding: 25px; border-radius: 16px; max-width: 380px; width: 100%; 
+      text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative;
+    }
+    .info-display-box { 
+      background: #f7f9fa; border: 2px dashed #1877f2; padding: 12px; border-radius: 10px; 
+      margin: 15px 0; display: none; text-align: center; animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .ethio-premium-profile { 
+      max-width: 600px; margin: 20px auto; background: #11131b; color: white; 
+      border: 1px solid #34303f; border-radius: 22px; overflow: hidden; font-family: Arial, sans-serif;
+    }
+    .ethio-cover { height: 190px; position: relative; background: linear-gradient(135deg,#27104f,#a34dff,#ffbf57);}
+    .ethio-cover img { width: 100%; height: 100%; object-fit: cover;}
+    .ethio-profile-info { padding: 0 20px 22px; position: relative;}
+    .ethio-avatar { width: 108px; height: 108px; border-radius: 50%; object-fit: cover; border: 4px solid #17131f; margin-top: -55px; position: relative; background: #222;}
+    .ethio-premium-tag { display: inline-block; background: linear-gradient(90deg,#ffd36a,#ff9d25); color: #251600; padding: 7px 12px; border-radius: 20px; font-size: 12px; font-weight: bold;}
+    .ethio-profile-info h2 { margin: 12px 0 5px; font-size: 25px;}
+    .ethio-profile-info p { color: #c5c3d0; margin: 8px 0 16px;}
+    .ethio-profile-actions { display: flex; gap: 10px; flex-wrap: wrap;}
+    .ethio-profile-actions a { flex: 1; text-align: center; text-decoration: none; padding: 12px; border-radius: 12px; font-weight: bold; background: linear-gradient(90deg,#a855f7,#7138ed); color: white;}
+    .ethio-profile-actions a:last-child { background: #292532; border: 1px solid #494153;}
+  </style>
 </head>
 <body>
 
-<header class="topbar">
+<header class="topbar"> 
   <div class="brand">🌍 EthioHub</div>
 </header>
 
-<main class="wrap">
+<main class="wrap"> 
+  <!-- የተደበቁ የፋይል መጫኛዎች (ለፎቶ መቀየር) --> 
+  <input type="file" id="coverInput" accept="image/*" style="display:none" onchange="changeCoverImage(this)"> 
+  <input type="file" id="avatarInput" accept="image/*" style="display:none" onchange="changeAvatarImage(this)"> 
 
-  <!-- የተደበቁ የፋይል መጫኛዎች (ለፎቶ መቀየር) -->
-  <input type="file" id="coverInput" accept="image/*" style="display:none" onchange="changeCoverImage(this)">
-  <input type="file" id="avatarInput" accept="image/*" style="display:none" onchange="changeAvatarImage(this)">
+  <!-- አረንጓዴ እና ነጭ የዌልካም ባነር --> 
+  <div style="background: linear-gradient(135deg, #11998e, #38ef7d); border-radius: 20px; margin: 15px auto; padding: 30px 20px; text-align: center; width: 100%; box-shadow: 0 8px 25px rgba(56, 239, 125, 0.2); box-sizing: border-box;"> 
+    <h1 style="font-size: 26px; font-weight: bold; margin: 0 0 10px 0; color: #ffffff;">Welcome to EthioHub ✨</h1> 
+    <p style="font-size: 15px; color: #ffffff; line-height: 1.6; margin: 0 0 20px 0;">የኢትዮጵያን ምርጥ ቪዲዮዎች፣ ፎቶዎች እና አዝናኝ ይዘቶች በአንድ ቦታ ያግኙ!</p> 
+    <button style="background-color: #ffffff; color: #11998e; border: none; padding: 12px 25px; border-radius: 25px; font-size: 15px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.15);" onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'})">ይዘቶችን ይመልከቱ 🚀</button> 
+  </div> 
 
-  <!-- አረንጓዴ እና ነጭ የዌልካም ባነር -->
-  <div style="background: linear-gradient(135deg, #11998e, #38ef7d); border-radius: 20px; margin: 15px auto; padding: 30px 20px; text-align: center; width: 100%; box-shadow: 0 8px 25px rgba(56, 239, 125, 0.2); box-sizing: border-box;">
-      <h1 style="font-size: 26px; font-weight: bold; margin: 0 0 10px 0; color: #ffffff;">Welcome to EthioHub ✨</h1>
-      <p style="font-size: 15px; color: #ffffff; line-height: 1.6; margin: 0 0 20px 0;">የኢትዮጵያን ምርጥ ቪዲዮዎች፣ ፎቶዎች እና አዝናኝ ይዘቶች በአንድ ቦታ ያግኙ!</p>
-      <button style="background-color: #ffffff; color: #11998e; border: none; padding: 12px 25px; border-radius: 25px; font-size: 15px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.15);" onclick="document.getElementById('videos').scrollIntoView({behavior: 'smooth'})">ይዘቶችን ይመልከቱ 🚀</button>
-  </div>
-  
-
-<style>
-.ethio-premium-profile {
-  max-width: 600px;
-  margin: 20px auto;
-  background: #11131b;
-  color: white;
-  border: 1px solid #34303f;
-  border-radius: 22px;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-}
-.ethio-cover {
-  height: 190px;
-  position: relative;
-  background: linear-gradient(135deg,#27104f,#a34dff,#ffbf57);
-}
-.ethio-cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.ethio-profile-info {
-  padding: 0 20px 22px;
-  position: relative;
-}
-.ethio-avatar {
-  width: 108px;
-  height: 108px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #17131f;
-  margin-top: -55px;
-  position: relative;
-  background: #222;
-}
-.ethio-premium-tag {
-  display: inline-block;
-  background: linear-gradient(90deg,#ffd36a,#ff9d25);
-  color: #251600;
-  padding: 7px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: bold;
-}
-.ethio-profile-info h2 {
-  margin: 12px 0 5px;
-  font-size: 25px;
-}
-.ethio-profile-info p {
-  color: #c5c3d0;
-  margin: 8px 0 16px;
-}
-.ethio-profile-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.ethio-profile-actions a {
-  flex: 1;
-  text-align: center;
-  text-decoration: none;
-  padding: 12px;
-  border-radius: 12px;
-  font-weight: bold;
-  background: linear-gradient(90deg,#a855f7,#7138ed);
-  color: white;
-}
-.ethio-profile-actions a:last-child {
-  background: #292532;
-  border: 1px solid #494153;
-}
-</style>
-
-<section class="ethio-premium-profile">
-  <div class="ethio-cover">
-    <img src="ethio2.jpg" alt="EthioHub profile banner">
-  </div>
-
-  <div class="ethio-profile-info">
-    <img class="ethio-avatar"
-         src="ethio1.jpg"
-         alt="EthioHub profile photo">
-
-    <br>
-    <span class="ethio-premium-tag">✦ ETHIOHUB PREMIUM</span>
-
-    <h2>EthioHub 👑</h2>
-    <p>🎬 Entertainment • Videos • Photos</p>
-    <p>✨ Welcome to the premium side of EthioHub.</p>
-
-    <div class="ethio-profile-actions">
-      <a href="#premium-payment">✦ Get Premium</a>
-      <a href="#videos">▶ Watch Videos</a>
+  <section class="ethio-premium-profile"> 
+    <div class="ethio-cover"> 
+      <img src="ethio2.jpg" alt="EthioHub profile banner"> 
+    </div> 
+    <div class="ethio-profile-info"> 
+      <img class="ethio-avatar" src="ethio1.jpg" alt="EthioHub profile photo"> 
+      <br> 
+      <span class="ethio-premium-tag">✦ ETHIOHUB PREMIUM</span> 
+      <h2>EthioHub 👑</h2> 
+      <p>🎬 Entertainment • Videos • Photos</p> 
+      <p>✨ Welcome to the premium side of EthioHub.</p> 
+      <div class="ethio-profile-actions"> 
+        <a href="#premium-payment">✦ Get Premium</a> 
+        <a href="#videos">▶ Watch Videos</a> 
+      </div> 
     </div>
-  </div>
-</section>
+  </section> 
 
+  <section class="card telegram-box"> 
+    <h2>🚀 Join EthioHub</h2> 
+    <p>🎬 Watch Videos · 📸 Explore Photos</p> 
+    <a href="https://t.me" target="_blank" rel="noopener" class="telegram-btn global-style" style="display:inline-block;padding:14px 22px;border-radius:12px;font-size:16px;"> ✈️ OPEN ETHIOHUB TELEGRAM </a>
   </section>
 
- 
-<section class="card telegram-box">
-  <h2>🚀 Join EthioHub</h2>
-  <p>🎬 Watch Videos · 📸 Explore Photos</p>
-  <a
-    href="https://t.me/+_Sp66kHYjgliZjk8"
-    target="_blank"
-    rel="noopener"
-    class="telegram-btn global-style"
-    style="display:inline-block;padding:14px 22px;border-radius:12px;font-size:16px;"
-  >
-    ✈️ OPEN ETHIOHUB TELEGRAM
-  </a>
-</section>
-<!-- EthioHub Premium Video -->
-<section class="card" id="premium-videos">
-  <h2>🎬 EthioHub Premium</h2>
+  <!-- EthioHub Premium Video -->
+  <section class="card" id="premium-videos"> 
+    <h2>🎬 EthioHub Premium</h2> 
+    <div style="background:#111;border-radius:14px;padding:10px;color:white"> 
+      <video controls playsinline preload="metadata" style="width:100%;border-radius:10px" poster="photo1.jpg"> 
+        <source src="ybnew.mp4" type="video/mp4"> Your browser does not support video. 
+      </video> 
+      <h3>🔥 Featured Video</h3> 
+      <p>Enjoy exclusive content on EthioHub!</p> 
+      <div style="display:flex;gap:8px;flex-wrap:wrap"> 
+        <button onclick="hubLike(this)">❤️ Like <span>0</span></button> 
+        <button onclick="hubComment()">💬 Comment</button> 
+        <button onclick="hubShare()">↗ Share</button> 
+      </div> 
+      <div id="comment-area"></div> 
+    </div> 
+    <h3 style="margin-top:22px">🔒 Exclusive Videos</h3> 
+    <button onclick="showPayment()" style="width:100%;margin:6px 0;background:#171717;color:#ffd166;padding:18px"> 🔒 Premium Video 2 — Unlock Now </button> 
+    <button onclick="showPayment()" style="width:100%;margin:6px 0;background:#171717;color:#ffd166;padding:18px"> 🔒 Premium Video 3 — Unlock Now </button>
+  </section>
 
-  <div style="background:#111;border-radius:14px;padding:10px;color:white">
-    <video controls playsinline preload="metadata"
-      style="width:100%;border-radius:10px"
-      poster="photo1.jpg">
-      <source src="ybnew.mp4" type="video/mp4">
-      Your browser does not support video.
-    </video>
-
-    <h3>🔥 Featured Video</h3>
-    <p>Enjoy exclusive content on EthioHub!</p>
-
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button onclick="hubLike(this)">❤️ Like <span>0</span></button>
-      <button onclick="hubComment()">💬 Comment</button>
-      <button onclick="hubShare()">↗ Share</button>
-    </div>
-    <div id="comment-area"></div>
-  </div>
-
-  <h3 style="margin-top:22px">🔒 Exclusive Videos</h3>
-
-  <button onclick="showPayment()"
-    style="width:100%;margin:6px 0;background:#171717;color:#ffd166;padding:18px">
-    🔒 Premium Video 2 — Unlock Now
-  </button>
-
-  <button onclick="showPayment()"
-    style="width:100%;margin:6px 0;background:#171717;color:#ffd166;padding:18px">
-    🔒 Premium Video 3 — Unlock Now
-  </button>
-</section>
-
-<!-- Premium Payment -->
-<section class="card" id="premium-payment" style="display:none">
-  <h2>👑 Unlock EthioHub Premium</h2>
-  <p>Pay using one of the methods below, then submit your receipt for verification.</p>
-
-  <div style="background:#f3f6ff;padding:15px;border-radius:12px;margin:12px 0">
-    <h3>📱 Telebirr</h3>
-    <p>Account: <strong>0927487505</strong></p>
-    <button onclick="copyHub('0927487505')">📋 Copy Number</button>
-  </div>
-
-  <div style="background:#f3f6ff;padding:15px;border-radius:12px;margin:12px 0">
-    <h3>🏦 Wegagen Bank</h3>
-    <p>Account: <strong>1157193230101</strong></p>
-    <button onclick="copyHub('1157193230101')">📋 Copy Account</button>
-  </div>
-
-  <label for="payment-reference">Payment reference / transaction ID</label>
-  <input id="payment-reference" type="text"
-    placeholder="Enter transaction ID"
-    style="width:100%;padding:12px;margin:10px 0">
-
-  <label for="payment-name">Your name</label>
-  <input id="payment-name" type="text"
-    placeholder="Enter your name"
-    style="width:100%;padding:12px;margin:10px 0">
-
-  <button onclick="submitHubPayment()"
-    style="width:100%;background:#1877f2;color:white;margin-top:10px">
-    📩 Submit Payment Details
-  </button>
-
-  <p id="payment-message" aria-live="polite"></p>
-
-  <button onclick="hidePayment()">← Back to Videos</button>
-</section>
-
-<script>
-function hubLike(button) {
-  const count = button.querySelector("span");
-  count.textContent = Number(count.textContent) + 1;
-}
-
-function hubComment() {
-  const area = document.getElementById("comment-area");
-  const input = document.createElement("input");
-  input.placeholder = "Write a comment...";
-  input.style.cssText = "width:65%;padding:10px;margin-top:12px";
-
-  const send = document.createElement("button");
-  send.textContent = "Post";
-  send.onclick = function() {
-    if (!input.value.trim()) return;
-    const p = document.createElement("p");
-    p.textContent = "💬 " + input.value.trim();
-    area.appendChild(p);
-    input.value = "";
-  };
-
-  area.replaceChildren(input, send);
-}
-
-async function hubShare() {
-  const data = {
-    title: "EthioHub Premium",
-    text: "Watch videos on EthioHub!",
-    url: location.href
-  };
-
-  if (navigator.share) {
-    try { await navigator.share(data); } catch (e) {}
-  } else {
-    try {
-      await navigator.clipboard.writeText(location.href);
-      alert("Website link copied!");
-    } catch (e) {
-      prompt("Copy your website link:", location.href);
-    }
-  }
-}
-
-function showPayment() {
-  document.getElementById("premium-payment").style.display = "block";
-  document.getElementById("premium-payment")
-    .scrollIntoView({behavior:"smooth"});
-}
-
-function hidePayment() {
-  document.getElementById("premium-payment").style.display = "none";
-  document.getElementById("premium-videos")
-    .scrollIntoView({behavior:"smooth"});
-}
-
-function copyHub(value) {
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(value)
-      .then(() => alert("Copied: " + value))
-      .catch(() => prompt("Copy this number:", value));
-  } else {
-    prompt("Copy this number:", value);
-  }
-}
-
-function submitHubPayment() {
-  const ref = document.getElementById("payment-reference").value.trim();
-  const name = document.getElementById("payment-name").value.trim();
-  const message = document.getElementById("payment-message");
-
-  if (!ref || !name) {
-    message.textContent = "Please enter your name and transaction ID.";
-    return;
-  }
-
-  message.textContent =
-    "Details entered. Payment must be verified by the administrator before Premium access is granted.";
-}
-</script>
-  
-</div>
-<!-- EthioHub Premium Plan -->
-<div class="card">
-  <h2>👑 Choose Your Premium Plan</h2>
-
-  <button onclick="chooseEthioHubPlan('7 Days',200)">
-    7 Days — 200 ETB
-  </button>
-
-  <button onclick="chooseEthioHubPlan('14 Days',350)">
-    14 Days — 350 ETB
-  </button>
-
-  <button onclick="chooseEthioHubPlan('21 Days',500)">
-    21 Days — 500 ETB
-  </button>
-
-  <button onclick="chooseEthioHubPlan('30 Days',650)">
-    30 Days — 650 ETB
-  </button>
-
-  <div id="selected-plan" style="display:none;margin-top:15px">
-    <h3 id="plan-name"></h3>
-    <h2 id="plan-price"></h2>
-    <p>Pay with Telebirr or Wegagen Bank.</p>
-    <button onclick="document.getElementById('premium-payment').scrollIntoView({behavior:'smooth'})">
-      Continue to Payment
-    </button>
-  </div>
-</div>
-
-<script>
-function chooseEthioHubPlan(name, price) {
-  document.getElementById('plan-name').textContent =
-    name + ' Premium';
-  document.getElementById('plan-price').textContent =
-    price + ' ETB';
-  document.getElementById('selected-plan').style.display = 'block';
-}
-</script>
-<script>
-<script>
-<script>
-function sendPaymentRequest() {
-  // የሁለቱንም የክፍያ ፎርም ሳጥኖች አንድ ላይ ለማገናኘት
-  const nameInput = document.getElementById('customer-name') || document.getElementById('payment-name');
-  const refInput = document.getElementById('transaction-id') || document.getElementById('payment-reference');
-  const statusOutput = document.getElementById('request-status') || document.getElementById('payment-message');
-
-  if (!nameInput || !refInput) return;
-
-  const name = nameInput.value.trim();
-  const ref = refInput.value.trim();
-
-  if (!name || !ref) {
-    alert('እባክዎ ስምዎንና የክፍያ ማረጋገጫ ቁጥር (Transaction ID) ያስገቡ።');
-    return;
-  }
-
-  // ዋናውን የFirebase መላኪያ ፎርም በስተጀርባ መሙላት
-  const mainName = document.getElementById('payment-name');
-  const mainRef = document.getElementById('payment-reference');
-  
-  if (mainName && mainRef) {
-    mainName.value = name;
-    mainRef.value = ref;
-  }
-
-  if (typeof window.submitHubPayment === 'function') {
-    window.submitHubPayment();
-  } else {
-    if (statusOutput) {
-      statusOutput.style.color = "orange";
-      statusOutput.textContent = "Firebase ገና አልተጫነም፣ እባክዎ ጥቂት ሰከንድ ይጠብቁ...";
-    }
-  }
-}
-</script>
-
-</script>
-
-</script><!-- Selected Premium Plan -->
-<div id="selected-plan"
-     style="display:none;background:#e8f1ff;padding:15px;border-radius:12px;margin:12px 0">
-  <h3>👑 Your Selected Plan</h3>
-  <p id="plan-name"></p>
-  <h2 id="plan-price"></h2>
-  <p>Pay using Telebirr or Wegagen Bank.</p>
-</div>
-
-<script>
-function chooseEthioHubPlan(name, price) {
-  document.getElementById('plan-name').textContent = name;
-  document.getElementById('plan-price').textContent = price + ' ETB';
-  document.getElementById('selected-plan').style.display = 'block';
-
-  const payment = document.getElementById('premium-payment');
-  if (payment) {
-    payment.style.display = 'block';
-    payment.scrollIntoView({behavior:'smooth'});
-  } else {
-    document.getElementById('selected-plan')
-      .scrollIntoView({behavior:'smooth'});
-  }
-}
-</script><!-- Firebase SDK እና የዳታቤዝ ማገናኛ ኮድ -->
-<script type="module">
-  import { initializeApp } from "https://gstatic.com";
-  import { getFirestore, collection, addDoc } from "https://gstatic.com";
-
-  // የእርስዎ የFirebase ማዋቀሪያ መረጃ
-  const firebaseConfig = {
-    apiKey: "AIzaSyDrQPz1glm8_3zLj-oW6x9Jtw0718Xs0r8",
-    authDomain: "://firebaseapp.com",
-    projectId: "ethiohub-887b8",
-    storageBucket: "ethiohub-887b8.firebasestorage.app",
-    messagingSenderId: "1019295583935",
-    appId: "1:1019295583935:web:e6657086448bc0eb6e400a",
-    measurementId: "G-KM7E9JTEXV"
-  };
-
-  // Firebaseን መጀመር
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  // የክፍያ መረጃውን ቀጥታ ወደ Firestore ዳታቤዝ የሚልክ አዲስ ተግባር
-  window.submitHubPayment = async function() {
-    const ref = document.getElementById("payment-reference").value.trim();
-    const name = document.getElementById("payment-name").value.trim();
-    const message = document.getElementById("payment-message");
-
-    if (!ref || !name) {
-      message.style.color = "red";
-      message.textContent = "እባክዎ ስምዎንና የክፍያ ማረጋገጫ ቁጥር (Transaction ID) ያስገቡ።";
-      return;
-    }
-
-    try {
-      message.style.color = "#1877f2";
-      message.textContent = "መረጃው እየተላከ ነው... እባክዎ ይጠብቁ።";
-
-      // ወደ 'payments' ፎልደር መረጃ ማስገባት
-      await addDoc(collection(db, "payments"), {
-        username: name,
-        transactionId: ref,
-        date: new Date().toISOString()
-      });
-
-      message.style.color = "green";
-      message.textContent = "የክፍያ ዝርዝርዎ በስኬት ተልኳል! በአስተዳዳሪው ተረጋግጦ ይከፈታል።";
-      
-      // ሳጥኖቹን ባዶ ማድረግ
-      document.getElementById("payment-reference").value = "";
-      document.getElementById("payment-name").value = "";
-    } catch (error) {
-      console.error("ስህተት ተፈጥሯል: ", error);
-      message.style.color = "red";
-      message.textContent = "የመረብ መቆራረጥ አጋጥሟል፣ እባክዎ ድጋሚ ይሞክሩ።";
-    }
-  }
-<!-- Firebase SDK እና የተስተካከለ የዳታቤዝ ማገናኛ ኮድ -->
-<script type="module">
-  import { initializeApp } from "https://gstatic.com";
-  import { getFirestore, collection, addDoc } from "https://gstatic.com";
-
-  // የእርስዎ የFirebase ማዋቀሪያ መረጃ
-  const firebaseConfig = {
-    apiKey: "AIzaSyDrQPz1glm8_3zLj-oW6x9Jtw0718Xs0r8",
-    authDomain: "://firebaseapp.com",
-    projectId: "ethiohub-887b8",
-    storageBucket: "ethiohub-887b8.firebasestorage.app",
-    messagingSenderId: "1019295583935",
-    appId: "1:1019295583935:web:e6657086448bc0eb6e400a",
-    measurementId: "G-KM7E9JTEXV"
-  };
-
-  // Firebaseን መጀመር
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  // ሁለቱንም ፎርሞች አገናኝቶ ወደ Firestore የሚልክ ዋናው ተግባር
-  window.submitHubPayment = async function() {
-    // ዌብሳይቱ ላይ ያሉትን ሳጥኖች በስም መፈለግ
-    const nameInput = document.getElementById("customer-name") || document.getElementById("payment-name");
-    const refInput = document.getElementById("transaction-id") || document.getElementById("payment-reference");
-    const statusOutput = document.getElementById("request-status") || document.getElementById("payment-message");
-
-    if (!nameInput || !refInput) return;
-
-    const name = nameInput.value.trim();
-    const ref = refInput.value.trim();
-
-    if (!name || !ref) {
-      alert("እባክዎ ስምዎንና የክፍያ ማረጋገጫ ቁጥር (Transaction ID) ያስገቡ።");
-      return;
-    }
-
-    try {
-      if (statusOutput) {
-        statusOutput.style.color = "#1877f2";
-        statusOutput.style.fontWeight = "bold";
-        statusOutput.textContent = "मረጃው እየተላከ ነው... እባክዎ ይጠብቁ።";
-      }
-
-      // ወደ 'payments' ፎልደር መረጃ ማስገባት
-      await addDoc(collection(db, "payments"), {
-        username: name,
-        transactionId: ref,
-        date: new Date().toISOString()
-      });
-
-      if (statusOutput) {
-        statusOutput.style.color = "green";
-        statusOutput.style.fontWeight = "bold";
-        statusOutput.textContent = "የክፍያ ዝርዝርዎ በስኬት ተልኳል! በአስተዳዳሪው ተረጋግጦ ይከፈታል።";
-      }
-      
-      // ሳጥኖቹን ባዶ ማድረግ
-      nameInput.value = "";
-      refInput.value = "";
-    } catch (error) {
-      console.error("ስህተት ተፈጥሯል: ", error);
-      if (statusOutput) {
-        statusOutput.style.color = "red";
-        statusOutput.textContent = "የመረብ መቆራረጥ አጋጥሟል፣ እባክዎ ድጋሚ ይሞክሩ።";
-      }
-    }
-  }
-</script>
-
+  <!-- Premium Payment -->
+  <section class="card" id="premium-payment" style="display:none"> 
+    <h2>👑 Unlock EthioHub Premium</h2> 
+    <p>Pay using one of the methods below, then submit your receipt for verification.</p> 
+    <div style="background:#f3f6ff;padding:15px;border-radius:12px;margin:12px 0"> 
+      <h3>📱 Telebirr</h3> 
+      <p>Account: <strong>0927487505</strong></p> 
+      <button onclick="copyHub('0927487505')">📋 Copy Number</button> 
+    </div> 
+    <div style="background:#f3f6ff;padding:15px;border-radius:12px;margin:12px 0"> 
+      <h3>🏦 Wegagen Bank</h3> 
+      <p>Account: <strong>1157193230101</strong></p> 
+      <button onclick="copyHub('1157193230101')">📋 Copy Account</button> 
+    </div> 
+    <label for="payment-reference">Payment reference / transaction ID</label> 
+    <input id="payment-reference" type="text" placeholder="Enter transaction ID" style="width:100%;padding:12px;margin:10px 0"> 
+    <label for="payment-name">Your name</label> 
+    <input id="payment-name" type="text" placeholder="Enter your name" style="width:100%;padding:12px;margin:10px 0"> 
+    <button onclick="submitHubPayment()" style="width:100%;background:#1877f2;color:white;margin-top:10px"> 📩 Submit Payment Details </button> 
+    <p id="payment-message" aria-live="polite"></p> 
+    <button onclick="hidePayment()">← Back to Videos</button>
