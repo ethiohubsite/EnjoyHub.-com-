@@ -372,30 +372,18 @@ function chooseEthioHubPlan(name, price) {
 }
 </script>
 <script>
+<script>
 function sendPaymentRequest() {
-  const name = document.getElementById('customer-name').value.trim();
-  const ref = document.getElementById('transaction-id').value.trim();
-
-  if (!name || !ref) {
-    alert('እባክዎ ስምዎንና Transaction ID ያስገቡ።');
-    return;
+  if (typeof window.submitHubPayment === 'function') {
+    window.submitHubPayment();
+  } else {
+    alert('Firebase ገና አልተጫነም፣ እባክዎ ጥቂት ሰከንድ ይጠብቁ።');
   }
-
-  const message =
-    'EthioHub Premium Payment Request%0A' +
-    'Name: ' + encodeURIComponent(name) + '%0A' +
-    'Transaction ID: ' + encodeURIComponent(ref);
-
-  document.getElementById('request-status').textContent =
-    'ዝርዝሮቹ ተዘጋጅተዋል። Telegram ይከፈታል።';
-
-  window.open(
-    'https://t.me/share/url?url=' +
-    encodeURIComponent('https://t.me/+_Sp66kHYjgliZjk8') +
-    '&text=' + message,
-    '_blank'
-  );
 }
+</script>
+
+
+  
 </script><!-- Selected Premium Plan -->
 <div id="selected-plan"
      style="display:none;background:#e8f1ff;padding:15px;border-radius:12px;margin:12px 0">
