@@ -373,17 +373,45 @@ function chooseEthioHubPlan(name, price) {
 </script>
 <script>
 <script>
+<script>
 function sendPaymentRequest() {
+  // የሁለቱንም የክፍያ ፎርም ሳጥኖች አንድ ላይ ለማገናኘት
+  const nameInput = document.getElementById('customer-name') || document.getElementById('payment-name');
+  const refInput = document.getElementById('transaction-id') || document.getElementById('payment-reference');
+  const statusOutput = document.getElementById('request-status') || document.getElementById('payment-message');
+
+  if (!nameInput || !refInput) return;
+
+  const name = nameInput.value.trim();
+  const ref = refInput.value.trim();
+
+  if (!name || !ref) {
+    alert('እባክዎ ስምዎንና የክፍያ ማረጋገጫ ቁጥር (Transaction ID) ያስገቡ።');
+    return;
+  }
+
+  // ዋናውን የFirebase መላኪያ ፎርም በስተጀርባ መሙላት
+  const mainName = document.getElementById('payment-name');
+  const mainRef = document.getElementById('payment-reference');
+  
+  if (mainName && mainRef) {
+    mainName.value = name;
+    mainRef.value = ref;
+  }
+
   if (typeof window.submitHubPayment === 'function') {
     window.submitHubPayment();
   } else {
-    alert('Firebase ገና አልተጫነም፣ እባክዎ ጥቂት ሰከንድ ይጠብቁ።');
+    if (statusOutput) {
+      statusOutput.style.color = "orange";
+      statusOutput.textContent = "Firebase ገና አልተጫነም፣ እባክዎ ጥቂት ሰከንድ ይጠብቁ...";
+    }
   }
 }
 </script>
 
+</script>
 
-  
 </script><!-- Selected Premium Plan -->
 <div id="selected-plan"
      style="display:none;background:#e8f1ff;padding:15px;border-radius:12px;margin:12px 0">
