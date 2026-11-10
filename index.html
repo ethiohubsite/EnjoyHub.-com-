@@ -137,7 +137,7 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
 
   <section class="card" id="premium-payment" style="display:none">
     <h2>👑 Premium Payment</h2>
-    <p>ክፍያውን ከፈጸሙ በኋላ የTransaction Number እና የክፍያ መረጃ ያስገቡ።</p>
+    <p>ክፍያውን ከፈጸሙ በኋላ Transaction Number ያስገቡ።</p>
 
     <div class="payment-box">
       <h3>📱 Telebirr</h3>
@@ -151,20 +151,11 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
       <button onclick="copyValue('1157193230101')">📋 Copy Account</button>
     </div>
 
-    <label for="customer-name"><strong>Your Name</strong></label>
-    <input class="field" id="customer-name" type="text" placeholder="Enter your name" autocomplete="name">
-
     <label for="transaction-id"><strong>Transaction Number</strong></label>
     <input class="field" id="transaction-id" type="text" placeholder="Enter transaction number">
 
     <label for="payment-amount"><strong>Payment Amount (ETB)</strong></label>
     <input class="field" id="payment-amount" type="number" placeholder="Select a plan first" readonly>
-
-    <label for="payment-method"><strong>Payment Method</strong></label>
-    <select class="field" id="payment-method">
-      <option value="Telebirr">Telebirr</option>
-      <option value="Wegagen Bank">Wegagen Bank</option>
-    </select>
 
     <p id="payment-message" class="status" aria-live="polite"></p>
 
@@ -199,7 +190,7 @@ function hubComment() {
 
 function postComment() {
   const input = document.getElementById("comment-input");
-  if (!input.value.trim()) return;
+  if (!input || !input.value.trim()) return;
   const p = document.createElement("p");
   p.textContent = "💬 " + input.value.trim();
   document.getElementById("comment-area").appendChild(p);
@@ -255,136 +246,17 @@ function copyValue(value) {
   }
 }
 
-async function submitPayment() {
-  const name = document.getElementById("customer-name").value.trim();
-  const transactionId = document.getElementById("transaction-id").value.trim();
-  const amount = Number(document.getElementById("payment-amount").value);
-  const method = document.getElementById("payment-method").value;
-  const message = document.getElementById("payment-message");
-  const button = document.getElementById("send-payment");
+function submitPayment() {
+  const transaction = document.getElementById("transaction-id").value.trim();
+  const amount = document.getElementById("payment-amount").value.trim();
 
-  if (!selectedPlan || !amount) {
+  if (!selectedPlan || !amount || Number(amount) <= 0) {
     showMessage("እባክዎ መጀመሪያ Premium Plan ይምረጡ።", "red");
     return;
   }
-  if (!name || !transactionId) {
-    showMessage("ስምዎንና Transaction Number ያስገቡ።", "red");
-    return;
-  }
 
-  button.disabled = true;
-  button.textContent = "Sending...";
-
-  const paymentData = {
-    name,
-    transactionId,
-    amount,
-    method,
-    plan: selectedPlan,
-    createdAt: new Date().toISOString()
-  };
-
-  try {
-    /*
-      BACKEND URL ከተዘጋጀ በኋላ እዚህ እንጨምራለን።
-      Bot Token በዚህ HTML ውስጥ አይገባም።
-    */
-    const BACKEND_URL = "ADD_YOUR_SECURE_BACKEND_URL_HERE";
-
-    if (BACKEND_URL === "ADD_YOUR_SECURE_BACKEND_URL_HERE") {
-      showMessage("የPayment Form ተዘጋጅቷል፤ Telegram መላኪያው Backend ከተገናኘ በኋላ ይሰራል።", "orange");
-      return;
-    }
-
-    const response = await fetch(BACKEND_URL, {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify(paymentData)
-    });
-
-    if (!response.ok) throw new Error("Payment request failed");
-
-    showMessage("መረጃዎ ተልኳል። ክፍያው በአስተዳዳሪው ከተረጋገጠ በኋላ Premium ይከፈታል።", "green");
-
-    document.getElementById("customer-name").value = "";
-    document.getElementById("transaction-id").value = "";
-  } catch (error) {
-    console.error(error);
-    showMessage("መላክ አልተሳካም። እባክዎ የInternet ግንኙነትዎን ያረጋግጡና ይድገሙ።", "red");
-  } finally {
-    button.disabled = false;
-    button.textContent = "📩 Send Payment";
-  }
-}
-
-function showMessage(text, color) {
-  const message = document.getElementById("payment-message");
-  message.style.display = "block";
-  message.style.color = color;
-  message.textContent = text;
-}
-</script><style>
-.payment-box {
-  background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 420px;
-  margin: 20px auto;
-  box-shadow: 0 2px 10px #0001;
-}
-.payment-box input,
-.payment-box button {
-  width: 100%;
-  padding: 14px;
-  margin: 8px 0;
-  border-radius: 8px;
-  box-sizing: border-box;
-  font-size: 16px;
-}
-.payment-box input {
-  border: 1px solid #ccc;
-}
-.payment-box button {
-  background: #1877f2;
-  color: white;
-  border: none;
-  font-weight: bold;
-}
-</style>
-
-<div class="payment-box">
-  <h3>Payment Confirmation</h3>
-
-  <input
-    type="text"
-    id="transactionNumber"
-    placeholder="Transaction Number"
-    required
-  >
-
-  <input
-    type="number"
-    id="totalAmount"
-    placeholder="Total Amount (ETB)"
-    min="1"
-    required
-  >
-
-  <button onclick="sendPayment()">
-    Send Payment
-  </button>
-</div>
-
-<script>
-function sendPayment() {
-  const transaction =
-    document.getElementById("transactionNumber").value.trim();
-
-  const amount =
-    document.getElementById("totalAmount").value.trim();
-
-  if (!transaction || !amount || Number(amount) <= 0) {
-    alert("Please enter Transaction Number and Total Amount");
+  if (!transaction) {
+    showMessage("Transaction Number ያስገቡ።", "red");
     return;
   }
 
@@ -393,11 +265,18 @@ function sendPayment() {
     "\nTotal Amount: " + amount + " ETB";
 
   const telegramURL =
-    "https://t.me/share/url?text=" +
-    encodeURIComponent(message);
+    "https://t.me/share/url?text=" + encodeURIComponent(message);
 
-  window.open(telegramURL, "_blank");
+  showMessage("Telegram እየተከፈተ ነው። @EthioHub1_bot ይምረጡና Send ይጫኑ።", "green");
 
+  window.location.href = telegramURL;
+}
+
+function showMessage(text, color) {
+  const message = document.getElementById("payment-message");
+  message.style.display = "block";
+  message.style.color = color;
+  message.textContent = text;
 }
 </script>
 
