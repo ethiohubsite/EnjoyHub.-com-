@@ -57,115 +57,98 @@ footer{text-align:center;padding:25px;color:#65676b;font-size:13px}
 
 <main class="wrap">
 
-  <section class="welcome">
-    <h1>Welcome to EthioHub ✨</h1>
-    <p>የኢትዮጵያን ምርጥ ቪዲዮዎች፣ ፎቶዎች እና አዝናኝ ይዘቶች በአንድ ቦታ ያግኙ!</p>
-    <button onclick="document.getElementById('videos').scrollIntoView({behavior:'smooth'})">
-      ይዘቶችን ይመልከቱ 🚀
-    </button>
-  </section>
+<section class="welcome">
+<h1>Welcome to EthioHub ✨</h1>
+<p>የኢትዮጵያን ምርጥ ቪዲዮዎች፣ ፎቶዎች እና አዝናኝ ይዘቶች በአንድ ቦታ ያግኙ!</p>
+<button onclick="document.getElementById('videos').scrollIntoView({behavior:'smooth'})">ይዘቶችን ይመልከቱ 🚀</button>
+</section>
 
-  <section class="profile">
-    <div class="cover">
-      <img src="ethio2.jpg" alt="EthioHub banner">
-    </div>
-    <div class="profile-info">
-      <img class="avatar" src="ethio1.jpg" alt="EthioHub profile">
-      <br>
-      <span class="premium-tag">✦ ETHIOHUB PREMIUM</span>
-      <h2>EthioHub 👑</h2>
-      <p>🎬 Entertainment • Videos • Photos</p>
-      <p>✨ Welcome to the premium side of EthioHub.</p>
-      <div class="profile-actions">
-        <a href="#plans">✦ Get Premium</a>
-        <a href="#videos">▶ Watch Videos</a>
-      </div>
-    </div>
-  </section>
+<section class="profile">
+<div class="cover"><img src="ethio2.jpg" alt="EthioHub banner"></div>
+<div class="profile-info">
+<img class="avatar" src="ethio1.jpg" alt="EthioHub profile"><br>
+<span class="premium-tag">✦ ETHIOHUB PREMIUM</span>
+<h2>EthioHub 👑</h2>
+<p>🎬 Entertainment • Videos • Photos</p>
+<p>✨ Welcome to the premium side of EthioHub.</p>
+<div class="profile-actions">
+<a href="#plans">✦ Get Premium</a>
+<a href="#videos">▶ Watch Videos</a>
+</div>
+</div>
+</section>
 
-  <section class="card telegram-box">
-    <h2>🚀 Join EthioHub</h2>
-    <p>🎬 Watch Videos · 📸 Explore Photos</p>
-    <a href="https://t.me/+_Sp66kHYjgliZjk8"
-       target="_blank" rel="noopener noreferrer"
-       class="telegram-btn">✈️ OPEN ETHIOHUB TELEGRAM</a>
-  </section>
+<section class="card telegram-box">
+<h2>🚀 Join EthioHub</h2>
+<p>🎬 Watch Videos · 📸 Explore Photos</p>
+<a href="https://t.me/+_Sp66kHYjgliZjk8" target="_blank" rel="noopener noreferrer" class="telegram-btn">✈️ OPEN ETHIOHUB TELEGRAM</a>
+</section>
 
-  <section class="card" id="videos">
-    <h2>🎬 EthioHub Entertainment</h2>
-    <div class="video-box">
-      <video controls playsinline preload="metadata" poster="photo1.jpg">
-        <source src="ybnew.mp4" type="video/mp4">
-        Your browser does not support video.
-      </video>
-      <h3>🔥 Featured Video</h3>
-      <p>Enjoy exclusive content on EthioHub!</p>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button onclick="hubLike(this)">❤️ Like <span>0</span></button>
-        <button onclick="hubComment()">💬 Comment</button>
-        <button onclick="hubShare()">↗ Share</button>
-      </div>
-      <div id="comment-area"></div>
-    </div>
+<section class="card" id="videos">
+<h2>🎬 EthioHub Entertainment</h2>
+<div class="video-box">
+<video controls playsinline preload="metadata" poster="photo1.jpg">
+<source src="ybnew.mp4" type="video/mp4">
+Your browser does not support video.
+</video>
+<h3>🔥 Featured Video</h3>
+<p>Enjoy exclusive content on EthioHub!</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<button onclick="hubLike(this)">❤️ Like <span>0</span></button>
+<button onclick="hubComment()">💬 Comment</button>
+<button onclick="hubShare()">↗ Share</button>
+</div>
+<div id="comment-area"></div>
+</div>
 
-    <h3 style="margin-top:22px">🔒 Exclusive Videos</h3>
-    <button onclick="goToPlans()" style="width:100%;margin:6px 0;background:#171717;color:#ffd166;padding:18px">
-      🔒 Premium Video 2 — Unlock Now
-    </button>
-    <button onclick="goToPlans()" style="width:100%;margin:6px 0;background:#171717;color:#ffd166;padding:18px">
-      🔒 Premium Video 3 — Unlock Now
-    </button>
-  </section>
+<h3 style="margin-top:22px">🔒 Exclusive Videos</h3>
+<button onclick="goToPlans()" style="width:100%;margin:6px 0;background:#171717;color:#ffd166;padding:18px">🔒 Premium Video 2 — Unlock Now</button>
+<button onclick="goToPlans()" style="width:100%;margin:6px 0;background:#171717;color:#ffd166;padding:18px">🔒 Premium Video 3 — Unlock Now</button>
+</section>
 
-  <section class="card" id="plans">
-    <h2>👑 Choose Your Premium Plan</h2>
-    <p>የሚፈልጉትን የPremium ጊዜ ይምረጡ።</p>
-    <div class="plans">
-      <button class="plan-btn" onclick="choosePlan(this,'7 Days',200)">7 Days<br>200 ETB</button>
-      <button class="plan-btn" onclick="choosePlan(this,'14 Days',350)">14 Days<br>350 ETB</button>
-      <button class="plan-btn" onclick="choosePlan(this,'21 Days',500)">21 Days<br>500 ETB</button>
-      <button class="plan-btn" onclick="choosePlan(this,'30 Days',650)">30 Days<br>650 ETB</button>
-    </div>
-    <div id="selected-plan" style="display:none;margin-top:15px;background:#f3f0ff;padding:14px;border-radius:12px">
-      <h3 id="plan-name"></h3>
-      <h2 id="plan-price"></h2>
-      <button onclick="openPayment()" style="background:#1877f2;color:white;width:100%">
-        Continue to Payment →
-      </button>
-    </div>
-  </section>
+<section class="card" id="plans">
+<h2>👑 Choose Your Premium Plan</h2>
+<p>የሚፈልጉትን የPremium ጊዜ ይምረጡ።</p>
+<div class="plans">
+<button class="plan-btn" onclick="choosePlan(this,'7 Days',200)">7 Days<br>200 ETB</button>
+<button class="plan-btn" onclick="choosePlan(this,'14 Days',350)">14 Days<br>350 ETB</button>
+<button class="plan-btn" onclick="choosePlan(this,'21 Days',500)">21 Days<br>500 ETB</button>
+<button class="plan-btn" onclick="choosePlan(this,'30 Days',650)">30 Days<br>650 ETB</button>
+</div>
+<div id="selected-plan" style="display:none;margin-top:15px;background:#f3f0ff;padding:14px;border-radius:12px">
+<h3 id="plan-name"></h3>
+<h2 id="plan-price"></h2>
+<button onclick="openPayment()" style="background:#1877f2;color:white;width:100%">Continue to Payment →</button>
+</div>
+</section>
 
-  <section class="card" id="premium-payment" style="display:none">
-    <h2>👑 Premium Payment</h2>
-    <p>ክፍያውን ከፈጸሙ በኋላ Transaction Number ያስገቡ።</p>
+<section class="card" id="premium-payment" style="display:none">
+<h2>👑 Premium Payment</h2>
+<p>ክፍያውን ከፈጸሙ በኋላ Transaction Number ያስገቡ።</p>
 
-    <div class="payment-box">
-      <h3>📱 Telebirr</h3>
-      <p>Account: <strong>0927487505</strong></p>
-      <button onclick="copyValue('0927487505')">📋 Copy Number</button>
-    </div>
+<div class="payment-box">
+<h3>📱 Telebirr</h3>
+<p>Account: <strong>0927487505</strong></p>
+<button onclick="copyValue('0927487505')">📋 Copy Number</button>
+</div>
 
-    <div class="payment-box">
-      <h3>🏦 Wegagen Bank</h3>
-      <p>Account: <strong>1157193230101</strong></p>
-      <button onclick="copyValue('1157193230101')">📋 Copy Account</button>
-    </div>
+<div class="payment-box">
+<h3>🏦 Wegagen Bank</h3>
+<p>Account: <strong>1157193230101</strong></p>
+<button onclick="copyValue('1157193230101')">📋 Copy Account</button>
+</div>
 
-    <label for="transaction-id"><strong>Transaction Number</strong></label>
-    <input class="field" id="transaction-id" type="text" placeholder="Enter transaction number">
+<label for="transaction-id"><strong>Transaction Number</strong></label>
+<input class="field" id="transaction-id" type="text" placeholder="Enter transaction number">
 
-    <label for="payment-amount"><strong>Payment Amount (ETB)</strong></label>
-    <input class="field" id="payment-amount" type="number" placeholder="Select a plan first" readonly>
+<label for="payment-amount"><strong>Payment Amount (ETB)</strong></label>
+<input class="field" id="payment-amount" type="number" placeholder="Select a plan first" readonly>
 
-    <p id="payment-message" class="status" aria-live="polite"></p>
+<p id="payment-message" class="status" aria-live="polite"></p>
 
-    <button id="send-payment" onclick="submitPayment()" style="width:100%;background:#1877f2;color:white">
-      📩 Send Payment
-    </button>
-    <button onclick="document.getElementById('videos').scrollIntoView({behavior:'smooth'})">
-      ← Back to Videos
-    </button>
-  </section>
+<button id="send-payment" onclick="submitPayment()" style="width:100%;background:#1877f2;color:white">📩 Send Payment</button>
+<button onclick="document.getElementById('videos').scrollIntoView({behavior:'smooth'})">← Back to Videos</button>
+</section>
 
 </main>
 
@@ -213,10 +196,8 @@ async function hubShare() {
 function choosePlan(button, name, amount) {
   selectedPlan = name;
   selectedAmount = amount;
-
   document.querySelectorAll(".plan-btn").forEach(b => b.classList.remove("selected"));
   button.classList.add("selected");
-
   document.getElementById("plan-name").textContent = name + " Premium";
   document.getElementById("plan-price").textContent = amount + " ETB";
   document.getElementById("payment-amount").value = amount;
@@ -264,12 +245,12 @@ function submitPayment() {
     "Transaction Number: " + transaction +
     "\nTotal Amount: " + amount + " ETB";
 
-  const telegramURL =
+  const shareURL =
     "https://t.me/share/url?text=" + encodeURIComponent(message);
 
-  showMessage("Telegram እየተከፈተ ነው። @EthioHub1_bot ይምረጡና Send ይጫኑ።", "green");
+  showMessage("Telegram ይከፈታል። @Cj_Fresh281 ይምረጡና Send ይጫኑ።", "green");
 
-  window.location.href = telegramURL;
+  window.location.href = shareURL;
 }
 
 function showMessage(text, color) {
