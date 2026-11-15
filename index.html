@@ -1,1 +1,175 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#9825b8">
+<title>Company Registration</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;background:linear-gradient(135deg,#4b45d2 0%,#9825b8 40%,#df287b 72%,#ff641f 100%);color:#fff;font-family:Arial,sans-serif;display:flex;justify-content:center;align-items:center}
+.app-container{width:100%;max-width:400px;min-height:100vh;padding:55px 24px 32px;display:flex;flex-direction:column;justify-content:space-between}
+.header-text{text-align:center;margin-bottom:40px}
+.header-text h1{font-family:"Brush Script MT","Segoe Script",cursive;font-size:48px;font-weight:bold;color:#fff;margin-bottom:18px}
+.header-text p{font-size:14px;color:#fff;line-height:1.5}
+.outlined-box{position:relative;border:1.5px solid rgba(255,255,255,.75);border-radius:10px;padding:16px;margin-bottom:25px;display:flex;align-items:center;background:rgba(255,255,255,.10)}
+.outlined-box.active{border:2px solid #fff}
+.outlined-label{position:absolute;top:-9px;left:12px;background:transparent;padding:0 6px;font-size:12px;color:#fff}
+.country-row{justify-content:space-between}
+.country-left{display:flex;align-items:center;gap:14px;font-size:16px}
+.flag-icon{font-size:20px}.chevron{font-size:18px}
+.country-code{font-size:16px;padding-right:12px;border-right:1px solid rgba(255,255,255,.6);margin-right:12px}
+.phone-input{background:transparent;border:none;color:#fff;font-size:16px;width:100%;outline:none}
+.phone-input::placeholder,.comment-box::placeholder{color:rgba(255,255,255,.8)}
+.bottom-actions{display:flex;justify-content:flex-end;margin-top:35px}
+.next-arrow-btn{width:56px;height:56px;border-radius:50%;background:#168cff;border:none;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.send-btn{width:100%;background:#168cff;color:#fff;border:none;border-radius:10px;padding:16px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:14px}
+.send-btn:disabled{opacity:.6;cursor:wait}
+.comment-box{width:100%;min-height:100px;resize:vertical;padding:14px;border:1.5px solid rgba(255,255,255,.75);border-radius:10px;background:rgba(255,255,255,.10);color:#fff;font-size:15px;outline:none;font-family:Arial,sans-serif;margin-top:8px}
+.consent{font-size:12px;line-height:1.5;color:#fff;margin:14px 0}
+.consent-label{display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.5}
+.status{text-align:center;font-size:13px;margin-top:14px;color:#fff;line-height:1.5}
+.back-link{display:block;text-align:center;margin-top:20px;color:#fff;font-size:14px;text-decoration:none;cursor:pointer}
+.error-msg{color:#fff;font-size:13px;margin-top:-12px;margin-bottom:15px;display:none}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<div id="step-phone" class="app-container">
+  <div>
+    <div class="header-text">
+      <h1>Company</h1>
+      <p>Please confirm your country code and enter your phone number.</p>
+    </div>
+    <div class="outlined-box country-row">
+      <span class="outlined-label">Country</span>
+      <div class="country-left"><span class="flag-icon">🇪🇹</span><span>Ethiopia</span></div>
+      <span class="chevron">›</span>
+    </div>
+    <div class="outlined-box active">
+      <span class="outlined-label">Phone number</span>
+      <span class="country-code">+251</span>
+      <input type="tel" id="phone-input" class="phone-input" placeholder="00 000 0000" maxlength="11" autocomplete="tel-national" required>
+    </div>
+    <div id="phone-error" class="error-msg">Please enter a valid 9-digit phone number.</div>
+  </div>
+  <div class="bottom-actions">
+    <button type="button" class="next-arrow-btn" onclick="goToPersonalStep()" aria-label="Next">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </button>
+  </div>
+</div>
+
+<div id="step-personal" class="app-container hidden">
+  <div>
+    <div class="header-text">
+      <h1>Company</h1>
+      <p id="phone-subtitle">Enter your Personal ID to continue.</p>
+    </div>
+    <form id="registration-form">
+      <div class="outlined-box active">
+        <span class="outlined-label">Personal ID</span>
+        <input type="text" id="personal-id" class="phone-input" placeholder="Enter Personal ID" autocomplete="off" required>
+      </div>
+      <label for="comment" style="font-size:14px;color:#fff">Comment</label>
+      <textarea id="comment" class="comment-box" placeholder="Write your comment here..."></textarea>
+      <p class="consent">Your phone number, Personal ID and comment (if provided) will be sent to the company through Telegram for registration.</p>
+      <label class="consent-label"><input type="checkbox" id="consent-check" required> I understand and agree to send this information to the company.</label>
+      <button type="submit" class="send-btn" id="send-btn">Send</button>
+      <p id="send-status" class="status" aria-live="polite"></p>
+    </form>
+    <a class="back-link" href="#" onclick="goBackToPhone();return false;">← Change phone number</a>
+  </div>
+</div>
+
+<script>
+"use strict";
+const WORKER_URL = "https://company-message-telegram.adonayyemane153.workers.dev";
+const phoneInput = document.getElementById("phone-input");
+
+phoneInput.addEventListener("input", function(event) {
+  const digits = event.target.value.replace(/\D/g, "").slice(0, 9);
+  let formatted = digits.slice(0, 2);
+  if (digits.length > 2) formatted += " " + digits.slice(2, 5);
+  if (digits.length > 5) formatted += " " + digits.slice(5, 9);
+  event.target.value = formatted;
+  document.getElementById("phone-error").style.display = "none";
+});
+
+function goToPersonalStep() {
+  const digits = phoneInput.value.replace(/\D/g, "");
+  if (digits.length !== 9) {
+    document.getElementById("phone-error").style.display = "block";
+    phoneInput.focus();
+    return;
+  }
+  document.getElementById("phone-subtitle").textContent =
+    "Phone: +251 " + phoneInput.value + " — Enter your Personal ID below.";
+  document.getElementById("step-phone").classList.add("hidden");
+  document.getElementById("step-personal").classList.remove("hidden");
+}
+
+function goBackToPhone() {
+  document.getElementById("step-personal").classList.add("hidden");
+  document.getElementById("step-phone").classList.remove("hidden");
+}
+
+async function postToWorker(payload) {
+  const response = await fetch(WORKER_URL, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(payload)
+  });
+  const result = await response.json().catch(() => null);
+  if (!response.ok || (result && result.success === false)) {
+    throw new Error((result && result.error) || "Request failed");
+  }
+  return result;
+}
+
+document.getElementById("registration-form").addEventListener("submit", async function(event) {
+  event.preventDefault();
+  const digits = phoneInput.value.replace(/\D/g, "");
+  const personalId = document.getElementById("personal-id").value.trim();
+  const comment = document.getElementById("comment").value.trim();
+  const agreed = document.getElementById("consent-check").checked;
+  const button = document.getElementById("send-btn");
+  const status = document.getElementById("send-status");
+
+  if (digits.length !== 9 || !personalId || !agreed) {
+    status.textContent = "Please check your details and consent.";
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = "Sending...";
+  status.textContent = "";
+
+  try {
+    await postToWorker({
+      action: "employee",
+      phone: "+251" + digits,
+      companyId: personalId
+    });
+
+    if (comment) {
+      await postToWorker({
+        action: "comment",
+        comment: comment
+      });
+    }
+
+    status.textContent = "Your registration has been submitted.";
+    this.reset();
+    phoneInput.value = "";
+  } catch (error) {
+    status.textContent = "Could not send. Please try again or contact the company.";
+  } finally {
+    button.disabled = false;
+    button.textContent = "Send";
+  }
+});
+</script>
+</body>
+</html>
